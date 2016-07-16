@@ -10,15 +10,18 @@
          data-sap-ui-theme="sap_bluecrystal"
          data-sap-ui-libs="sap.m"
          data-sap-ui-compatVersion="edge"
-         data-sap-ui-preload="async" >
+         data-sap-ui-preload="async"
+         data-sap-ui-resourceroots='{ "ui5.template": "./"
+         }' >
       </script>
       <script>
          sap.ui.getCore().attachInit(function () {
-             alert("UI5 is ready");
+           sap.ui.xmlview({
+               viewName : "ui5.template.view.App"
+            }).placeAt("content");
          });
       </script>
    </head>
-   <body>
-      <p>Hello World</p>
+   <body class="sapUiBody" id="content">
    </body>
 </html>

@@ -1,0 +1,21 @@
+<mvc:View
+          controllerName="ui5.template.controller.Object"
+          xmlns="sap.m"
+          xmlns:mvc="sap.ui.core.mvc">
+    <Panel
+           headerText="{i18n>helloPanelTitle}">
+        <content>
+            <Button
+                    text="{i18n>showHelloButtonText}"
+                    press="onShowHello"/>
+            <Input class="myCustomText"
+                   value="{/recipient/name}"
+                   description="Hello {/recipient/name}"
+                   valueLiveUpdate="true"
+                   width="60%"/>
+            <Text
+                  text="Hello {/recipient/name}"
+                  class ="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
+        </content>
+    </Panel>
+</mvc:View>

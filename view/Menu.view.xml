@@ -1,0 +1,35 @@
+<mvc:View
+          controllerName="ui5.template.controller.Menu"
+          xmlns="sap.m"
+          xmlns:mvc="sap.ui.core.mvc">
+
+    <Page>
+        <Bar>
+            <contentLeft>
+                <Image id="ui5Logo"
+                       src ="./ecole/img/57_iPhone_Desktop_Launch.png"
+                       width="35px"
+                       height="35px"
+                       />
+
+            </contentLeft>
+            <contentMiddle>
+                <Text  text="{i18n>WELCOME_TITLE}" />
+            </contentMiddle>
+        </Bar>
+
+
+
+
+        <footer>
+            <Bar>
+            <contentMiddle>
+                <Link id="myproLink"
+                      text="v0.8.0"
+                      href="http://blog.mypro.de/tag/ui5boilerplate/" />
+            </contentMiddle>
+            </Bar>
+        </footer>
+    </Page>
+
+</mvc:View>

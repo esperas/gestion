@@ -37,7 +37,14 @@
 		"type": "sap.ui.model.resource.ResourceModel",
 		"settings": {
 		  "bundleName": "ui5.template.i18n.i18n"
+		},
+	"resources": {
+	  "css": [
+		{
+		  "uri": "css/style.css"
 		}
+	  ]
+	}
 	  }
 	}
   }

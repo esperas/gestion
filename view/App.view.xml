@@ -9,13 +9,17 @@
               initialMaster="master"
               orientationChange="onOrientationChange">
         <detailPages>
+    <Page>
+                <mvc:XMLView viewName="ui5.template.view.Launchpad"/>
+        </Page>
+  <!--
             <Page title="{i18n>homePageTitle}">
                 <content>
                     <mvc:XMLView viewName="ui5.template.view.Object"/>
                 </content>
-            </Page>
+            </Page>-->
         </detailPages>
-        <masterPages>
+        <masterPages showHideMode="true">
             <mvc:XMLView viewName="ui5.template.view.Menu"/>
         </masterPages>
     </SplitApp>

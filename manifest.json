@@ -1,51 +1,54 @@
 {
-  "_version": "0.0.1",
-  "sap.app": {
-	"_version": "0.0.1",
-	"id": "ui5.template",
-	"type": "application",
-	"i18n": "i18n/i18n.properties",
-	"title": "{{appTitle}}",
-	"description": "{{appDescription}}",
-	"applicationVersion": {
-	  "version": "0.0.1"
-	}
-  },
-  "sap.ui": {
-	"_version": "0.0.1",
-	"technology": "UI5",
-	"deviceTypes": {
-	  "desktop": true,
-	  "tablet": true,
-	  "phone": true
-	},
-	"supportedThemes": [
-	  "sap_bluecrystal"
-	]
-  },
-  "sap.ui5": {
-	"_version": "0.0.1",
-	"rootView": "ui5.template.view.App",
-	"dependencies": {
-	  "minUI5Version": "1.30",
-	  "libs": {
-		"sap.m": {}
-	  }
-	},
-	"models": {
-	  "i18n": {
-		"type": "sap.ui.model.resource.ResourceModel",
-		"settings": {
-		  "bundleName": "ui5.template.i18n.i18n"
-		},
-	"resources": {
-	  "css": [
-		{
-		  "uri": "css/style.css"
-		}
-	  ]
-	}
-	  }
-	}
-  }
+    "_version": "0.0.1",
+    "sap.app": {
+        "_version": "0.0.1",
+        "id": "ui5.template",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "dataSources": {
+            "menuJson": {
+                "uri": "model/Menu.json",
+                "type": "JSON"
+            }
+        }
+    },
+    "sap.ui": {
+        "_version": "0.0.1",
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_bluecrystal"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "0.0.1",
+        "rootView": "ui5.template.view.App",
+        "dependencies": {
+            "minUI5Version": "1.30",
+            "libs": {
+                "sap.m": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ui5.template.i18n.i18n"
+                }
+            },
+            "menu": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "menuJson"
+            }
+        }
+    }
 }

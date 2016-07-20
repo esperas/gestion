@@ -1,5 +1,5 @@
 <mvc:View
-          controllerName="ui5.template.controller.Object"
+          controllerName="ecole.famille.controller.Object"
           xmlns="sap.m"
           xmlns:mvc="sap.ui.core.mvc">
     <Panel

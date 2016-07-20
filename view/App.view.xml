@@ -1,5 +1,5 @@
 <mvc:View
-          controllerName="ui5.template.controller.App"
+          controllerName="ecole.famille.controller.App"
           xmlns="sap.m"
           xmlns:mvc="sap.ui.core.mvc"
           displayBlock="true">
@@ -9,18 +9,18 @@
               initialMaster="master"
               orientationChange="onOrientationChange">
         <detailPages>
-    <Page>
-                <mvc:XMLView viewName="ui5.template.view.Launchpad"/>
-        </Page>
-  <!--
+            <Page>
+                <mvc:XMLView viewName="ecole.famille.view.Launchpad"/>
+            </Page>
+            <!--
             <Page title="{i18n>homePageTitle}">
                 <content>
-                    <mvc:XMLView viewName="ui5.template.view.Object"/>
+                    <mvc:XMLView viewName="ecole.famille.view.Object"/>
                 </content>
             </Page>-->
         </detailPages>
         <masterPages showHideMode="true">
-            <mvc:XMLView viewName="ui5.template.view.Menu"/>
+            <mvc:XMLView viewName="ecole.famille.view.Menu"/>
         </masterPages>
     </SplitApp>
 </mvc:View>

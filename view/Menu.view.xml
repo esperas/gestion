@@ -1,35 +1,44 @@
 <mvc:View
-          controllerName="ui5.template.controller.Menu"
+          controllerName="ecole.famille.controller.Menu"
           xmlns="sap.m"
           xmlns:mvc="sap.ui.core.mvc">
 
-    <Page>
+
+    <Bar>
+        <contentLeft>
+            <Image id="ui5Logo"
+                   src ="./ecole/img/57_iPhone_Desktop_Launch.png"
+                   width="35px"
+                   height="35px"
+                   />
+
+        </contentLeft>
+        <contentMiddle>
+            <Text  text="{i18n>WELCOME_TITLE}" />
+        </contentMiddle>
+    </Bar>
+
+    <List headerText="{i18n>ListOfAllEmployees}" items="{menu>/Menu}">
+        <items>
+            <StandardListItem
+                              title="{menu>title}"
+                              iconDensityAware="false"
+                              iconInset="false"
+                              type="Navigation"
+                              press="onListItemPressed"/>
+        </items>
+    </List>
+
+
+<!--    <footer>
         <Bar>
-            <contentLeft>
-                <Image id="ui5Logo"
-                       src ="./ecole/img/57_iPhone_Desktop_Launch.png"
-                       width="35px"
-                       height="35px"
-                       />
-
-            </contentLeft>
-            <contentMiddle>
-                <Text  text="{i18n>WELCOME_TITLE}" />
-            </contentMiddle>
-        </Bar>
-
-
-
-
-        <footer>
-            <Bar>
             <contentMiddle>
                 <Link id="myproLink"
                       text="v0.8.0"
                       href="http://blog.mypro.de/tag/ui5boilerplate/" />
             </contentMiddle>
-            </Bar>
-        </footer>
-    </Page>
+        </Bar>
+    </footer>-->
+
 
 </mvc:View>

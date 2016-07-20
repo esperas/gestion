@@ -4,7 +4,7 @@ sap.ui.define([
    "sap/ui/model/resource/ResourceModel"
 ], function (UIComponent, JSONModel, ResourceModel) {
    "use strict";
-   return UIComponent.extend("ui5.template.Component", {
+   return UIComponent.extend("ecole.famille.Component", {
            metadata : {
             manifest: "json"
       },
@@ -23,7 +23,7 @@ sap.ui.define([
 
          // set i18n model
          var i18nModel = new ResourceModel({
-            bundleName : "ui5.template.i18n.i18n"
+            bundleName : "ecole.famille.i18n.i18n"
          });
          this.setModel(i18nModel, "i18n");
       }

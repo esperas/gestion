@@ -1,24 +1,33 @@
 <mvc:View
-          controllerName="ui5.template.controller.App"
+          controllerName="ecole.famille.controller.Launchpad"
           xmlns="sap.m"
           xmlns:mvc="sap.ui.core.mvc"
           displayBlock="true">
 
 
-         <Text  text="{i18n>WELCOME_TITLE}" />
-        <List id="Menu" headerText="{i18n>ListOfAllEmployees}" items="{menu>/Menu}">
-            <items>
-                <StandardListItem
-                                  title="{menu>title}"
-                                  iconDensityAware="false"
-                                  iconInset="false"
-                                  type="Navigation"
-                                  press="onListItemPressed"/>
-            </items>
-        </List>
+
+    <Text  text="{i18n>WELCOME_TITLE}" />
+
+    <TileContainer height="500px"
+                   tiles="{menu>/Menu}">
+        <StandardTile
+                      icon="sap-icon://{menu>icon}"
+                      title="{menu>title}"
+                      info="{menu>description}"
+                      />
+    </TileContainer>
 
 
-
-
+ <!--   <List id="Menu" headerText="{i18n>ListOfAllEmployees}" items="{menu>/Menu}">
+        <items>
+            <StandardListItem
+                              title="{menu>title}"
+                              iconDensityAware="false"
+                              iconInset="false"
+                              type="Navigation"
+                              press="onListItemPressed"/>
+        </items>
+    </List>
+-->
 
 </mvc:View>

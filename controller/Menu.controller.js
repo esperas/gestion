@@ -3,7 +3,7 @@ sap.ui.define([
     "sap/m/MessageToast"
 ], function (Controller, MessageToast) {
     "use strict";
-    return Controller.extend("ui5.template.controller.Menu", {
+    return Controller.extend("ecole.famille.controller.Menu", {
 
 
     });

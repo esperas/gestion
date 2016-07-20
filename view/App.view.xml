@@ -5,12 +5,7 @@
           xmlns="sap.m">
     <Table id="idProductsTable"
            inset="false"
-           items="{
-                  path: '/suivi',
-                  sorter: {
-                  path: 'date'
-                  }
-                  }">
+           items="{/suivi}">
         <headerToolbar>
             <Toolbar>
                 <Title text="{famille}" level="H2"/>

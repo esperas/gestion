@@ -10,12 +10,7 @@
         "applicationVersion": {
             "version": "0.0.1"
         },
-        "dataSources": {
-            "menuJson": {
-                "uri": "model/Menu.json",
-                "type": "JSON"
-            }
-        }
+
     },
     "sap.ui": {
         "_version": "0.0.1",
@@ -45,10 +40,7 @@
                     "bundleName": "ecole.famille.i18n.i18n"
                 }
             },
-            "menu": {
-                "type": "sap.ui.model.json.JSONModel",
-                "dataSource": "menuJson"
-            }
+
         }
     }
 }

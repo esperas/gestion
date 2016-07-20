@@ -12,14 +12,6 @@ sap.ui.define([
       init : function () {
          // call the init function of the parent
          UIComponent.prototype.init.apply(this, arguments);
-         // set data model
-         var oData = {
-            recipient : {
-               name : "World"
-            }
-         };
-         var oModel = new JSONModel(oData);
-         this.setModel(oModel);
 
          // set i18n model
          var i18nModel = new ResourceModel({

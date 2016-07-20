@@ -1,26 +1,69 @@
 <mvc:View
           controllerName="ecole.famille.controller.App"
-          xmlns="sap.m"
+          xmlns:l="sap.ui.layout"
           xmlns:mvc="sap.ui.core.mvc"
-          displayBlock="true">
+          xmlns="sap.m">
+    <Table id="idProductsTable"
+           inset="false"
+           items="{
+                  path: '/suivi',
+                  sorter: {
+                  path: 'date'
+                  }
+                  }">
+        <headerToolbar>
+            <Toolbar>
+                <Title text="{famille}" level="H2"/>
+            </Toolbar>
+        </headerToolbar>
+        <columns>
+            <Column
+                    width="12em">
+                <Text text="Date" />
+            </Column>
+            <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                <Text text="Facture" />
+            </Column>
+            <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Right">
+                <Text text="Règlement" />
+            </Column>
+            <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Center">
+                <Text text="Montant" />
+            </Column>
+            <Column
+                    hAlign="Right">
+                <Text text="Montant" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <ObjectIdentifier
+                                      title="{date}"
+                                      text="{date}"/>
+                    <Text
+                          text="{facture}" />
+                    <Text
+                          text="{reglement}" />
 
-    <SplitApp id="SplitAppDemo"
-              initialDetail="detail"
-              initialMaster="master"
-              orientationChange="onOrientationChange">
-        <detailPages>
-            <Page>
-                <mvc:XMLView viewName="ecole.famille.view.Launchpad"/>
-            </Page>
-            <!--
-            <Page title="{i18n>homePageTitle}">
-                <content>
-                    <mvc:XMLView viewName="ecole.famille.view.Object"/>
-                </content>
-            </Page>-->
-        </detailPages>
-        <masterPages showHideMode="true">
-            <mvc:XMLView viewName="ecole.famille.view.Menu"/>
-        </masterPages>
-    </SplitApp>
+                    <ObjectNumber
+                                  number="{
+                                          parts:[{path:'montant'},EUR],
+                                          type: 'sap.ui.model.type.Currency',
+                                          formatOptions: {showMeasure: false}
+                                          }"
+                                  unit="EUR" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+
 </mvc:View>

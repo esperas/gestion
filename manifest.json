@@ -38,6 +38,10 @@
                 "settings": {
                     "bundleName": "ecole.famille.i18n.i18n"
                 }
+            },
+            "coucou": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "json/data.json"
             }
         },
         "resources": {

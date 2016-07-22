@@ -4,10 +4,10 @@
           xmlns:mvc="sap.ui.core.mvc">
     <Panel class="sapUiResponsiveMargin"
            width="auto"
-           headerText="{famille>famille}">
+           headerText="{coucou>/famille}">
         <content>
 
-            <Text  text="{famille}" class="sapUiSmallMarginEnd" />
+
             <Button
                     text="Say Hello"
                     press="onShowHello"/>
@@ -19,10 +19,10 @@
           headerText="{i18n>invoiceListTitle}"
           class="sapUiResponsiveMargin"
           width="auto"
-          items="{famille>/suivi}" >
+          items="{coucou>/suivi}" >
         <items>
             <ObjectListItem
-                            title="{famille>montant} x {invoice>ProductName}"/>
+                            title="argh x {coucou>facture}"/>
         </items>
     </List>
 </mvc:View>

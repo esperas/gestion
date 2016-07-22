@@ -5,9 +5,5 @@ sap.ui.define([
     "use strict";
     return Controller.extend("ecole.famille.controller.App", {
 
-        onShowHello : function () {
-            // show a native JavaScript alert
-            MessageToast.show("{recipient.name}");
-        }
     });
 });

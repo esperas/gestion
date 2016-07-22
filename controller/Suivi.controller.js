@@ -4,13 +4,19 @@ sap.ui.define([
 ], function (Controller, MessageToast) {
    "use strict";
    return Controller.extend("ecole.famille.controller.Suivi", {
+    init : function(){
+
+    },
       onShowHello : function () {
          // read msg from i18n model
          var oBundle = this.getView().getModel("i18n").getResourceBundle();
-         var sRecipient = this.getView().getModel().getProperty("/recipient/name");
-         var sMsg = oBundle.getText("helloMsg", [sRecipient]);
+
+
          // show message
-         MessageToast.show(sMsg);
+          var oData = sap.ui.getCore().getModel("famille");
+        console.log("Init suivi",oData);
+          oData.refresh();
+
       }
    });
 });

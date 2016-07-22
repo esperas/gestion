@@ -2,21 +2,27 @@
           controllerName="ecole.famille.controller.Suivi"
           xmlns="sap.m"
           xmlns:mvc="sap.ui.core.mvc">
-    <Panel
-           headerText="{i18n>helloPanelTitle}"
-           class="sapUiResponsiveMargin"
-           width="auto" >
+    <Panel class="sapUiResponsiveMargin"
+           width="auto"
+           headerText="{famille>famille}">
         <content>
-            <Panel class="sapUiResponsiveMargin"
-                   width="auto"
-                   headerText="{i18n>helloPanelTitle}">
-                <content>
 
-                    <Text  text="{i18n>showHelloButtonText}" class="sapUiSmallMarginEnd" />
+            <Text  text="{famille}" class="sapUiSmallMarginEnd" />
+            <Button
+                    text="Say Hello"
+                    press="onShowHello"/>
 
-
-                </content>
-            </Panel>
         </content>
     </Panel>
+
+    <List
+          headerText="{i18n>invoiceListTitle}"
+          class="sapUiResponsiveMargin"
+          width="auto"
+          items="{famille>/suivi}" >
+        <items>
+            <ObjectListItem
+                            title="{famille>montant} x {invoice>ProductName}"/>
+        </items>
+    </List>
 </mvc:View>

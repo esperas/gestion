@@ -2,12 +2,24 @@
           controllerName="ecole.famille.controller.App"
           xmlns:l="sap.ui.layout"
           xmlns:mvc="sap.ui.core.mvc"
-          xmlns="sap.m">
+          xmlns="sap.m"
+          displayBlock="true">
+    <App>
+        <pages>
+            <Page title="{i18n>homePageTitle}">
+                <content>
+                    <Panel
+                           headerText="{i18n>helloPanelTitle}">
+                        <content>
+
+                            <Text  text="{i18n>showHelloButtonText}" />
 
 
-         <Text  text="{i18n>showHelloButtonText}" />
-
-
-
+                        </content>
+                    </Panel>
+                </content>
+            </Page>
+        </pages>
+    </App>
 
 </mvc:View>

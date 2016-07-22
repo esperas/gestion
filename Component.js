@@ -1,23 +1,30 @@
 sap.ui.define([
-   "sap/ui/core/UIComponent",
-   "sap/ui/model/json/JSONModel",
-   "sap/ui/model/resource/ResourceModel"
+    "sap/ui/core/UIComponent",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/model/resource/ResourceModel"
 ], function (UIComponent, JSONModel, ResourceModel) {
-   "use strict";
-   return UIComponent.extend("ecole.famille.Component", {
-           metadata : {
+    "use strict";
+    return UIComponent.extend("ecole.famille.Component", {
+        metadata : {
             manifest: "json"
-      },
+        },
+        init : function () {
+            // call the init function of the parent
+            UIComponent.prototype.init.apply(this, arguments);
+            // set data model
+            var oData = {
+                recipient : {
+                    name : "World"
+                }
+            };
+            var oModel = new JSONModel(oData);
+            this.setModel(oModel);
 
-      init : function () {
-         // call the init function of the parent
-         UIComponent.prototype.init.apply(this, arguments);
-
-         // set i18n model
-         var i18nModel = new ResourceModel({
-            bundleName : "ecole.famille.i18n.i18n"
-         });
-         this.setModel(i18nModel, "i18n");
-      }
-   });
+            // set i18n model
+            var i18nModel = new ResourceModel({
+                bundleName : "ecole.famille.i18n.i18n"
+            });
+            this.setModel(i18nModel, "i18n");
+        }
+    });
 });

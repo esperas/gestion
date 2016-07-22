@@ -3,62 +3,11 @@
           xmlns:l="sap.ui.layout"
           xmlns:mvc="sap.ui.core.mvc"
           xmlns="sap.m">
-    <Table id="idProductsTable"
-           inset="false"
-           items="{/suivi}">
-        <headerToolbar>
-            <Toolbar>
-                <Title text="{famille}" level="H2"/>
-            </Toolbar>
-        </headerToolbar>
-        <columns>
-            <Column
-                    width="12em">
-                <Text text="Date" />
-            </Column>
-            <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                <Text text="Facture" />
-            </Column>
-            <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    hAlign="Right">
-                <Text text="Règlement" />
-            </Column>
-            <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    hAlign="Center">
-                <Text text="Montant" />
-            </Column>
-            <Column
-                    hAlign="Right">
-                <Text text="Montant" />
-            </Column>
-        </columns>
-        <items>
-            <ColumnListItem>
-                <cells>
-                    <ObjectIdentifier
-                                      title="{date}"
-                                      text="{date}"/>
-                    <Text
-                          text="{facture}" />
-                    <Text
-                          text="{reglement}" />
 
-                    <ObjectNumber
-                                  number="{
-                                          parts:[{path:'montant'},EUR],
-                                          type: 'sap.ui.model.type.Currency',
-                                          formatOptions: {showMeasure: false}
-                                          }"
-                                  unit="EUR" />
-                </cells>
-            </ColumnListItem>
-        </items>
-    </Table>
+
+         <Text  text="{i18n>showHelloButtonText}" />
+
+
+
 
 </mvc:View>

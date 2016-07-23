@@ -22,7 +22,9 @@
           items="{coucou>/suivi}" >
         <items>
             <ObjectListItem
-                            title="argh x {coucou>facture}"/>
+                            title="{coucou>date}"
+                            number="{coucou>facture}"
+                            numberUnit="EUR"/>
         </items>
     </List>
 </mvc:View>

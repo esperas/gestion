@@ -19,10 +19,12 @@ sap.ui.define([
                 oModel.refresh();
                 return oModel;
             } );*/
-
+            var parent = jQuery.sap.getUriParameters().get("parent");
+            parent = "json/" + parent + ".json";
             //Mise à jour du model avec les "vrai" données
             var oModel = this.getModel("famille");
-            oModel.loadData("json/data2.json");
+
+            oModel.loadData(parent);
 
 
             // set i18n model

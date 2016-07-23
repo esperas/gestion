@@ -22,7 +22,14 @@
                       number="{famille>/solde}"
                       numberUnit="EUR"
                       >
-
+		<statuses>
+			<ObjectStatus
+				text="Some Damaged"
+				state="Error" />
+			<ObjectStatus
+				text="In Stock"
+				state="Success" />
+		</statuses>
         </ObjectHeader>
         <Table id="idProductsTable"
                inset="false"
@@ -73,10 +80,10 @@
                                           />
                         <ObjectNumber
                                       number="{famille>facture}"
-                                      unit="EUR" />
+                                       />
                         <ObjectNumber
                                       number="{famille>reglement}"
-                                      unit="EUR" />
+                                       />
                         <Text
                               text="{famille>libelle}" />
 

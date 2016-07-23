@@ -15,16 +15,63 @@
         </content>
     </Panel>
 
-    <List
-          headerText="{i18n>invoiceListTitle}"
-          class="sapUiResponsiveMargin"
-          width="auto"
-          items="{coucou>/suivi}" >
-        <items>
-            <ObjectListItem
-                            title="{coucou>date}"
-                            number="{coucou>facture}"
-                            numberUnit="EUR"/>
-        </items>
-    </List>
+    <Panel>
+        <Table id="idProductsTable"
+               inset="false"
+               showSeparators="All"
+               items="{
+                      path: 'coucou>/suivi',
+                      sorter: {
+                      path: 'date'
+                      }
+                      }">
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="Products" level="H2"/>
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column
+                        width="12em">
+                    <Text text="Date" />
+                </Column>
+                <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true">
+                    <Text text="Factures" />
+                </Column>
+                <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        hAlign="Right">
+                    <Text text="Règlements" />
+                </Column>
+                <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        hAlign="Center">
+                    <Text text="Montant" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <ObjectIdentifier
+                                          title="{coucou>date}"
+                                          />
+                        <ObjectNumber
+                                      number="{coucou>facture}"
+                                      unit="EUR" />
+                        <ObjectNumber
+                                      number="{coucou>reglement}"
+                                      unit="EUR" />
+                        <Text
+                              text="{coucou>libelle}" />
+
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+
 </mvc:View>

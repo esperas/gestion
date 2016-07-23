@@ -8,9 +8,10 @@
            headerText="Famille : {famille>/famille}">
         <content>
             <l:VerticalLayout class="sapUiSmallMargin" >
-                <Text  text="Michel TALLON et Valérie PEYROT" />
-                <Text  text="8 impasse du taillis vert" />
-                <Text  text="33610 CANEJAN" />
+                <Text  text="{famille>/nom}" />
+                <Text  text="{famille>/adresse1}" />
+                <Text  text="{famille>/adresse2}" />
+                <Text  text="{famille>/ville}" />
             </l:VerticalLayout>
         </content>
     </Panel>
@@ -22,14 +23,14 @@
                       number="{famille>/solde}"
                       numberUnit="EUR"
                       >
-		<statuses>
+<!--		<statuses>
 			<ObjectStatus
 				text="Some Damaged"
 				state="Error" />
 			<ObjectStatus
 				text="In Stock"
 				state="Success" />
-		</statuses>
+		</statuses>-->
         </ObjectHeader>
         <Table id="idProductsTable"
                inset="false"

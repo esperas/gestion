@@ -19,8 +19,10 @@ sap.ui.define([
                 oModel.refresh();
                 return oModel;
             } );*/
-            console.log("Ligne de code suivante");
-            //var oModel = new JSONModel("json/data.json");
+
+            //Mise à jour du model avec les "vrai" données
+            var oModel = this.getModel("famille");
+            oModel.loadData("json/data2.json");
 
 
             // set i18n model

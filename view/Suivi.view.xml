@@ -1,72 +1,84 @@
 <mvc:View
           controllerName="ecole.famille.controller.Suivi"
           xmlns="sap.m"
+          xmlns:l="sap.ui.layout"
           xmlns:mvc="sap.ui.core.mvc">
     <Panel class="sapUiResponsiveMargin"
            width="auto"
-           headerText="{coucou>/famille}">
+           headerText="Famille : {famille>/famille}">
         <content>
-
-
-            <Button
-                    text="Say Hello"
-                    press="onShowHello"/>
-
+            <l:VerticalLayout class="sapUiSmallMargin" >
+                <Text  text="Michel TALLON et Valérie PEYROT" />
+                <Text  text="8 impasse du taillis vert" />
+                <Text  text="33610 CANEJAN" />
+            </l:VerticalLayout>
         </content>
     </Panel>
 
-    <Panel>
+    <Panel >
+        <ObjectHeader
+                      title="Suivi des paiements"
+                      intro="Dernière mise à jour : le 24/01/2016"
+                      number="{famille>/solde}"
+                      numberUnit="EUR"
+                      >
+
+        </ObjectHeader>
         <Table id="idProductsTable"
                inset="false"
+               fixedLayout="false"
                showSeparators="All"
                items="{
-                      path: 'coucou>/suivi',
+                      path: 'famille>/suivi',
                       sorter: {
                       path: 'date'
                       }
                       }">
-            <headerToolbar>
-                <Toolbar>
-                    <Title text="Products" level="H2"/>
-                </Toolbar>
-            </headerToolbar>
+
             <columns>
                 <Column
-                        width="12em">
+                       flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
                     <Text text="Date" />
                 </Column>
                 <Column
-                        minScreenWidth="Tablet"
-                        demandPopin="true">
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
                     <Text text="Factures" />
                 </Column>
                 <Column
-                        minScreenWidth="Tablet"
-                        demandPopin="true"
-                        hAlign="Right">
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
                     <Text text="Règlements" />
                 </Column>
                 <Column
-                        minScreenWidth="Tablet"
-                        demandPopin="true"
-                        hAlign="Center">
-                    <Text text="Montant" />
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
+                    <Text text="Libellé" />
                 </Column>
             </columns>
             <items>
                 <ColumnListItem>
                     <cells>
                         <ObjectIdentifier
-                                          title="{coucou>date}"
+                                          title="{famille>date}"
                                           />
                         <ObjectNumber
-                                      number="{coucou>facture}"
+                                      number="{famille>facture}"
                                       unit="EUR" />
                         <ObjectNumber
-                                      number="{coucou>reglement}"
+                                      number="{famille>reglement}"
                                       unit="EUR" />
                         <Text
-                              text="{coucou>libelle}" />
+                              text="{famille>libelle}" />
 
                     </cells>
                 </ColumnListItem>

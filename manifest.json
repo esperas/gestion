@@ -39,7 +39,7 @@
                     "bundleName": "ecole.famille.i18n.i18n"
                 }
             },
-            "coucou": {
+            "famille": {
                 "type": "sap.ui.model.json.JSONModel",
                 "uri": "json/data.json"
             }

@@ -18,59 +18,56 @@
 
     <Panel >
         <ObjectHeader
-                      title="Suivi des paiements"
-                      intro="Dernière mise à jour : le 24/01/2016"
+                      title="{i18n>SuiviPageTitle}"
+                      intro="{i18n>maj} {famille>/maj}"
                       number="{famille>/solde}"
                       numberUnit="EUR"
                       >
-<!--		<statuses>
-			<ObjectStatus
-				text="Some Damaged"
-				state="Error" />
-			<ObjectStatus
-				text="In Stock"
-				state="Success" />
-		</statuses>-->
+            <!--		<statuses>
+   <ObjectStatus
+    text="Some Damaged"
+    state="Error" />
+   <ObjectStatus
+    text="In Stock"
+    state="Success" />
+  </statuses>-->
         </ObjectHeader>
         <Table id="idProductsTable"
                inset="false"
                fixedLayout="false"
                showSeparators="All"
                items="{
-                      path: 'famille>/suivi',
-                      sorter: {
-                      path: 'date'
-                      }
+                      path: 'famille>/suivi'
                       }">
 
             <columns>
                 <Column
-                       flexible="true"
+                        flexible="true"
                         resizable="true"
                         autoResizable="true"
                         width="auto">
-                    <Text text="Date" />
+                    <Text text="{i18n>date}" />
                 </Column>
                 <Column
                         flexible="true"
                         resizable="true"
                         autoResizable="true"
                         width="auto">
-                    <Text text="Factures" />
+                    <Text text="{i18n>factures}" />
                 </Column>
                 <Column
                         flexible="true"
                         resizable="true"
                         autoResizable="true"
                         width="auto">
-                    <Text text="Règlements" />
+                    <Text text="{i18n>reglements}" />
                 </Column>
                 <Column
                         flexible="true"
                         resizable="true"
                         autoResizable="true"
                         width="auto">
-                    <Text text="Libellé" />
+                    <Text text="{i18n>libelle}" />
                 </Column>
             </columns>
             <items>
@@ -81,10 +78,10 @@
                                           />
                         <ObjectNumber
                                       number="{famille>facture}"
-                                       />
+                                      />
                         <ObjectNumber
                                       number="{famille>reglement}"
-                                       />
+                                      />
                         <Text
                               text="{famille>libelle}" />
 

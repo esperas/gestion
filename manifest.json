@@ -41,7 +41,7 @@
             },
             "famille": {
                 "type": "sap.ui.model.json.JSONModel",
-                "uri": "json/data.json"
+                "uri": "model/data.json"
             }
         },
         "resources": {

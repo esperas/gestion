@@ -1,0 +1,9 @@
+{
+    "famille" : "MODELE",
+    "solde" : "-85,84",
+    "suivi" : [
+        { "date" : "01/01/2000", "facture" : "0,60 €", "libelle" : "Facture n° : 0000" },
+        { "date" : "31/05/2016", "reglement" : "200,00 €", "libelle" : "Virement" }
+]
+
+}

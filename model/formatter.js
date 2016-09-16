@@ -3,10 +3,13 @@ sap.ui.define([], function () {
 
 	return {
         formatButton: function (sPiece) {
-            console.log(sPiece);
             if (sPiece) { return true};
             return false;
 
+        },
+        isNotEmpty: function (sValue) {
+            if (sValue) { return true};
+            return false;
         }
 	};
 });

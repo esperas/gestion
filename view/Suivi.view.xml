@@ -77,13 +77,27 @@
                         <ObjectIdentifier
                                           title="{famille>date}"
                                           />
-                        <ObjectNumber
-                                      number="{famille>facture}"
-                                      />
+                        <ObjectNumber       visible="{path: 'famille>facture', formatter: '.formatter.isNotEmpty'}"
+                                      		number="{
+                                                parts: [{path: 'famille>facture'}, {path: 'famille>currency'}],
+			                                     type: 'sap.ui.model.type.Currency',
+			                                     formatOptions: {
+				                                    showMeasure: false
+			                                     }
+		                                      }"
+		                                  numberUnit="{famille>currency}"
+                                     />
+                        <ObjectNumber       visible="{path: 'famille>reglement', formatter: '.formatter.isNotEmpty'}"
+                                      		number="{
+                                                parts: [{path: 'famille>reglement'}, {path: 'famille>currency'}],
+			                                     type: 'sap.ui.model.type.Currency',
+			                                     formatOptions: {
+				                                    showMeasure: false
+			                                     }
+		                                      }"
+		                                  numberUnit="{famille>currency}"
+                                     />
 
-                        <ObjectNumber
-                            number="{famille>reglement}"
-							 />
                         <FlexBox
                                alignItems="Start"
 					           justifyContent="Start">
@@ -93,7 +107,7 @@
 
                             <Button
                                     visible="{ path: 'famille>piece',
-		                                      formatter: '.formatter.formatButton'}"
+		                                      formatter: '.formatter.isNotEmpty'}"
                                     class="sapUiMediumMarginBegin"
                                     icon="sap-icon://download" press="onLink" ariaLabelledBy="editButtonLabel"/>
 					       </items>

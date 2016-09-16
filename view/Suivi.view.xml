@@ -69,6 +69,7 @@
                         width="auto">
                     <Text text="{i18n>libelle}" />
                 </Column>
+
             </columns>
             <items>
                 <ColumnListItem>
@@ -79,12 +80,24 @@
                         <ObjectNumber
                                       number="{famille>facture}"
                                       />
-                        <ObjectNumber
-                                      number="{famille>reglement}"
-                                      />
-                        <Text
-                              text="{famille>libelle}" />
 
+                        <ObjectNumber
+                            number="{famille>reglement}"
+							 />
+                        <FlexBox
+                               alignItems="Start"
+					           justifyContent="Start">
+					       <items>
+                            <Text
+                                  text="{famille>libelle}" />
+
+                            <Button
+                                    visible="{ path: 'famille>piece',
+		                                      formatter: '.formatter.formatButton'}"
+                                    class="sapUiMediumMarginBegin"
+                                    icon="sap-icon://download" press="onLink" ariaLabelledBy="editButtonLabel"/>
+					       </items>
+				        </FlexBox>
                     </cells>
                 </ColumnListItem>
             </items>

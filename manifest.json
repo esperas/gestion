@@ -39,9 +39,9 @@
                     "bundleName": "ecole.gestion.i18n.i18n"
                 }
             },
-            "famille": {
+            "parents": {
                 "type": "sap.ui.model.json.JSONModel",
-                "uri": "model/Global.json"
+                "uri": "json/Global.json"
             }
         },
         "resources": {

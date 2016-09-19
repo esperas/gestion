@@ -1,11 +1,11 @@
 <mvc:View
-          controllerName="ecole.famille.controller.Suivi"
+          controllerName="ecole.gestion.controller.Suivi"
           xmlns="sap.m"
           xmlns:l="sap.ui.layout"
           xmlns:mvc="sap.ui.core.mvc">
     <Panel class="sapUiResponsiveMargin"
            width="auto"
-           headerText="Famille : {famille>/famille}">
+           headerText="Parents : ">
         <content>
             <l:VerticalLayout class="sapUiSmallMargin" >
                 <Text  text="{famille>/nom}" />

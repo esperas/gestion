@@ -1,5 +1,5 @@
 <mvc:View
-          controllerName="ecole.famille.controller.Launchpad"
+          controllerName="ecole.gestion.controller.Launchpad"
           xmlns="sap.m"
           xmlns:mvc="sap.ui.core.mvc"
           displayBlock="true">

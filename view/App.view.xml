@@ -1,5 +1,5 @@
 <mvc:View
-          controllerName="ecole.famille.controller.App"
+          controllerName="ecole.gestion.controller.App"
           xmlns:l="sap.ui.layout"
           xmlns:mvc="sap.ui.core.mvc"
           xmlns="sap.m"
@@ -7,7 +7,7 @@
     <App>
         <pages>
             <Page title="{i18n>homePageTitle}">
-                <mvc:XMLView viewName="ecole.famille.view.Suivi"/>
+                <mvc:XMLView viewName="ecole.gestion.view.Suivi"/>
             </Page>
         </pages>
     </App>

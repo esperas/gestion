@@ -8,7 +8,7 @@ sap.ui.define([
     return Controller.extend("ecole.famille.controller.Suivi", {
         formatter : formatter,
 
-        onLink : function(evt) {
+        onPDF : function(evt) {
             var obj = evt.getSource().getBindingContext("famille").getObject();
             console.log(obj);
             var url = "./json/facture/" + jQuery.sap.getUriParameters().get("parent") + "-" + obj.piece + ".pdf";

@@ -20,17 +20,22 @@
         <ObjectHeader
                       title="{i18n>SuiviPageTitle}"
                       intro="{i18n>maj} {famille>/maj}"
-                      number="{famille>/solde}"
-                      numberUnit="EUR"
+                      number="{
+                                parts: [{path: 'famille>/solde'}, {path: 'famille>/currency'}],
+			                   type: 'sap.ui.model.type.Currency',
+			                   formatOptions: {
+				                    showMeasure: false
+			                   }
+                              }"
+		              numberUnit="{path: 'famille>/currency'}"
+                      numberState="{= ${famille>/solde} >= 0 ? 'Success' : 'Error' }"
                       >
-            <!--		<statuses>
-   <ObjectStatus
-    text="Some Damaged"
-    state="Error" />
-   <ObjectStatus
-    text="In Stock"
-    state="Success" />
-  </statuses>-->
+            <statuses>
+                <ObjectStatus
+                    visible="{= ${famille>/solde} >= 0 ? false : true }"
+                    text="{i18n>debiteur}"
+                    state="Error" />
+            </statuses>
         </ObjectHeader>
         <Table id="idProductsTable"
                inset="false"
@@ -79,23 +84,23 @@
                                           />
                         <ObjectNumber       visible="{path: 'famille>facture', formatter: '.formatter.isNotEmpty'}"
                                       		number="{
-                                                parts: [{path: 'famille>facture'}, {path: 'famille>currency'}],
+                                                parts: [{path: 'famille>facture'}, {path: 'famille>/currency'}],
 			                                     type: 'sap.ui.model.type.Currency',
 			                                     formatOptions: {
 				                                    showMeasure: false
 			                                     }
 		                                      }"
-		                                  numberUnit="{famille>currency}"
+		                                  numberUnit="{famille>/currency}"
                                      />
                         <ObjectNumber       visible="{path: 'famille>reglement', formatter: '.formatter.isNotEmpty'}"
                                       		number="{
-                                                parts: [{path: 'famille>reglement'}, {path: 'famille>currency'}],
+                                                parts: [{path: 'famille>reglement'}, {path: 'famille>/currency'}],
 			                                     type: 'sap.ui.model.type.Currency',
 			                                     formatOptions: {
 				                                    showMeasure: false
 			                                     }
 		                                      }"
-		                                  numberUnit="{famille>currency}"
+		                                  numberUnit="{famille>/currency}"
                                      />
 
                         <FlexBox
@@ -109,7 +114,7 @@
                                     visible="{ path: 'famille>piece',
 		                                      formatter: '.formatter.isNotEmpty'}"
                                     class="sapUiMediumMarginBegin"
-                                    icon="sap-icon://download" press="onLink" ariaLabelledBy="editButtonLabel"/>
+                                    icon="sap-icon://download" press="onPDF" ariaLabelledBy="editButtonLabel"/>
 					       </items>
 				        </FlexBox>
                     </cells>

@@ -2,7 +2,7 @@
     "_version": "1.1.0",
     "sap.app": {
         "_version": "1.1.0",
-        "id": "ecole.famille",
+        "id": "ecole.gestion",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "title": "{{appTitle}}",
@@ -25,7 +25,7 @@
     },
     "sap.ui5": {
         "_version": "1.1.0",
-        "rootView": "ecole.famille.view.App",
+        "rootView": "ecole.gestion.view.App",
         "dependencies": {
             "minUI5Version": "1.30",
             "libs": {
@@ -36,12 +36,12 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "ecole.famille.i18n.i18n"
+                    "bundleName": "ecole.gestion.i18n.i18n"
                 }
             },
             "famille": {
                 "type": "sap.ui.model.json.JSONModel",
-                "uri": "model/data.json"
+                "uri": "model/Global.json"
             }
         },
         "resources": {

@@ -1,8 +1,9 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/resource/ResourceModel"
-], function (UIComponent, JSONModel, ResourceModel) {
+    "sap/ui/model/resource/ResourceModel",
+    "./controller/ConfirmMail"
+], function (UIComponent, JSONModel, ResourceModel, ConfirmMail) {
     "use strict";
     return UIComponent.extend("ecole.gestion.Component", {
         metadata : {
@@ -17,6 +18,8 @@ sap.ui.define([
                 bundleName : "ecole.gestion.i18n.i18n"
             });
             this.setModel(i18nModel, "i18n");
+            // set dialog
+			this.ConfirmMail = new ConfirmMail();
         }
     });
 });

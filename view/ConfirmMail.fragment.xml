@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" >
+<Dialog
+		title="Choisir le type de mail à envoyer"
+		class="sapUiContentPadding" >
+		<content>
+                <FlexBox
+                               alignItems="Start"
+					           justifyContent="Start">
+				    <items>
+                        <Text text="Total des mails sélectionnés" />
+                         <ObjectNumber
+				            number="{path:'params>/nBselected',
+                                    type: 'sap.ui.model.type.Integer'}"
+				        />
+                    </items>
+            </FlexBox>
+			<SegmentedButton selectedKey="{params>/mailTemplate}">
+				<items>
+					<SegmentedButtonItem icon="sap-icon://unpaid-leave" text="Retard de paiement" key="retard" />
+					<SegmentedButtonItem icon="sap-icon://sales-document" text="Nouvelle facture" key="facture" />
+					<SegmentedButtonItem icon="sap-icon://redo" text="Mot de passe" key="password" />
+				</items>
+			</SegmentedButton>
+		</content>
+		<beginButton>
+            <Button text="Annuler" press="onCancel" />
+		</beginButton>
+		<endButton>
+			<Button text="Envoyer" press="onSendMail" />
+		</endButton>
+
+	</Dialog>
+</core:FragmentDefinition>

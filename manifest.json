@@ -42,6 +42,10 @@
             "parents": {
                 "type": "sap.ui.model.json.JSONModel",
                 "uri": "json/Global.json"
+            },
+            "params": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "json/param.json"
             }
         },
         "resources": {

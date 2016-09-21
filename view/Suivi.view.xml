@@ -5,117 +5,114 @@
           xmlns:mvc="sap.ui.core.mvc">
     <Panel class="sapUiResponsiveMargin"
            width="auto"
-           headerText="Parents : ">
+           headerText="Gestion des soldes : ">
         <content>
             <l:VerticalLayout class="sapUiSmallMargin" >
-                <Text  text="{famille>/nom}" />
-                <Text  text="{famille>/adresse1}" />
-                <Text  text="{famille>/adresse2}" />
-                <Text  text="{famille>/ville}" />
+                <FlexBox
+                               alignItems="Start"
+					           justifyContent="Start">
+				    <items>
+                        <Text text="{i18n>nb} : " />
+                        <ObjectNumber
+				            number="{path:'params>/nBselected',
+                                    type: 'sap.ui.model.type.Integer'}"
+				        />
+                    </items>
+                </FlexBox>
+                <FlexBox
+                               alignItems="Start"
+					           justifyContent="Start">
+				    <items>
+                        <Button text="Tout sélectionner" icon="sap-icon://multiselect-all" press="onSelectAll" ariaLabelledBy="editButtonLabel"/>
+                        <Button text="Tout dé-sélectionner" icon="sap-icon://multiselect-none" press="onUnselectAll" ariaLabelledBy="editButtonLabel"/>
+                        <Button text="Solde négatif" icon="sap-icon://money-bills" press="onSelectDeb" ariaLabelledBy="editButtonLabel"/>
+                        <Button enabled="{= ${params>/nBselected}  > 0 ? true : false }"
+                                class="sapUiMediumMarginBegin" text="Envoyer les mails" icon="sap-icon://email"  press="onMail" ariaLabelledBy="editButtonLabel"/>
+                    </items>
+                </FlexBox>
+
+
             </l:VerticalLayout>
         </content>
     </Panel>
 
     <Panel >
-        <ObjectHeader
-                      title="{i18n>SuiviPageTitle}"
-                      intro="{i18n>maj} {famille>/maj}"
-                      number="{
-                                parts: [{path: 'famille>/solde'}, {path: 'famille>/currency'}],
-			                   type: 'sap.ui.model.type.Currency',
-			                   formatOptions: {
-				                    showMeasure: false
-			                   }
-                              }"
-		              numberUnit="{path: 'famille>/currency'}"
-                      numberState="{= ${famille>/solde} >= 0 ? 'Success' : 'Error' }"
-                      >
-            <statuses>
-                <ObjectStatus
-                    visible="{= ${famille>/solde} >= 0 ? false : true }"
-                    text="{i18n>debiteur}"
-                    state="Error" />
-            </statuses>
-        </ObjectHeader>
         <Table id="idProductsTable"
                inset="false"
                fixedLayout="false"
                showSeparators="All"
                items="{
-                      path: 'famille>/suivi'
-                      }">
-
+                      path: 'parents>/',
+                      sorter: {
+                            path: 'famille',
+				            descending: false
+			                 }
+                      }"
+               >
             <columns>
-                <Column
+                <Column mergeDuplicates="true"
                         flexible="true"
                         resizable="true"
                         autoResizable="true"
                         width="auto">
-                    <Text text="{i18n>date}" />
+                    <Text text="{i18n>famille}" />
+                </Column>
+                <Column mergeDuplicates="true"
+                        mergeFunctionName="getNumber#"
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
+                    <Text text="{i18n>solde}" />
                 </Column>
                 <Column
                         flexible="true"
                         resizable="true"
                         autoResizable="true"
                         width="auto">
-                    <Text text="{i18n>factures}" />
+                    <Text text="{i18n>selected}" />
                 </Column>
                 <Column
                         flexible="true"
                         resizable="true"
                         autoResizable="true"
                         width="auto">
-                    <Text text="{i18n>reglements}" />
+                    <Text text="{i18n>mail}" />
                 </Column>
+
                 <Column
                         flexible="true"
                         resizable="true"
                         autoResizable="true"
                         width="auto">
-                    <Text text="{i18n>libelle}" />
+                    <Text text="{i18n>action}" />
                 </Column>
 
             </columns>
             <items>
                 <ColumnListItem>
                     <cells>
-                        <ObjectIdentifier
-                                          title="{famille>date}"
-                                          />
-                        <ObjectNumber       visible="{path: 'famille>facture', formatter: '.formatter.isNotEmpty'}"
-                                      		number="{
-                                                parts: [{path: 'famille>facture'}, {path: 'famille>/currency'}],
+                        <Text text="{parents>famille}" />
+                        <ObjectNumber      number="{
+                                            parts: [{path: 'parents>solde'}, {path: 'parents>currency'}],
 			                                     type: 'sap.ui.model.type.Currency',
 			                                     formatOptions: {
 				                                    showMeasure: false
 			                                     }
 		                                      }"
-		                                  numberUnit="{famille>/currency}"
+		                                  numberUnit="{parents>currency}"
                                      />
-                        <ObjectNumber       visible="{path: 'famille>reglement', formatter: '.formatter.isNotEmpty'}"
-                                      		number="{
-                                                parts: [{path: 'famille>reglement'}, {path: 'famille>/currency'}],
-			                                     type: 'sap.ui.model.type.Currency',
-			                                     formatOptions: {
-				                                    showMeasure: false
-			                                     }
-		                                      }"
-		                                  numberUnit="{famille>/currency}"
-                                     />
-
+                        <CheckBox visible="{path: 'parents>mail', formatter: '.formatter.isNotEmpty'}"
+                                  selected="{parents>selected}"
+                                  select="onCheck"/>
+                        <Text text="{parents>mail}" />
                         <FlexBox
                                alignItems="Start"
 					           justifyContent="Start">
 					       <items>
-                            <Text
-                                  text="{famille>libelle}" />
+                            <Button icon="sap-icon://search" press="onGoto" ariaLabelledBy="editButtonLabel"/>
 
-                            <Button
-                                    visible="{ path: 'famille>piece',
-		                                      formatter: '.formatter.isNotEmpty'}"
-                                    class="sapUiMediumMarginBegin"
-                                    icon="sap-icon://download" press="onPDF" ariaLabelledBy="editButtonLabel"/>
-					       </items>
+                            </items>
 				        </FlexBox>
                     </cells>
                 </ColumnListItem>

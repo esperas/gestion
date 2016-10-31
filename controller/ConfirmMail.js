@@ -35,12 +35,24 @@ sap.ui.define([
 
             // Envoi des mails
             var i;
+            var texte;
             for (i = 0; i < oParents.oData.length; i++) {
                 if (oParents.oData[i].selected) {
                     console.log(oParents.oData[i].mail);
                     var solde = parseFloat(oParents.oData[i].solde);
-
-                    emailjs.send("smtp_server", oParams.oData.mailTemplate , {"mail":oParents.oData[i].mail, "famille":oParents.oData[i].famille, "id":oParents.oData[i].id, "solde":solde.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })})
+                    if (solde>=0){
+                        texte = "créditeur de " + solde.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
+                        texte += ", vous n'avez rien à payer cette fois-ci"
+                    } else {
+                        texte = "débiteur de " + solde.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
+                    }
+                    emailjs.send("smtp_server", oParams.oData.mailTemplate , {
+                        "mail":oParents.oData[i].mail,
+                        "famille":oParents.oData[i].famille,
+                        "id":oParents.oData[i].id,
+                        "texte": texte,
+                        "solde":solde.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
+                    })
 
                 }
             }

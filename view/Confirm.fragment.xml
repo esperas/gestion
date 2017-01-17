@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" >
+<Dialog
+        id="Confirm"
+		title="Confirmer la suppression du suivi"
+		class="sapUiContentPadding" >
+
+		<beginButton>
+            <Button text="Annuler" press="onCancel" />
+		</beginButton>
+		<endButton>
+			<Button text="Supprimer" press="onConfirm" />
+		</endButton>
+
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,87 @@
+<mvc:View
+          controllerName="ecole.gestion.controller.Import"
+          xmlns="sap.m"
+          xmlns:l="sap.ui.layout"
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <Page title="{i18n>homePageTitle}"
+          showNavButton="true"
+		  navButtonPress="onNavBack">
+    <Panel class="sapUiResponsiveMargin"
+           width="auto"
+           headerText="Importation des données : ">
+        <content>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="Sélection">
+		     <tileContent>
+			    <TileContent unit="Lignes">
+				    <content>
+					   <NumericContent value="{params>/nbTab}" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="Mise à jour OK">
+		     <tileContent>
+			    <TileContent unit="Lignes">
+				    <content>
+					   <NumericContent value="{params>/nbOK}" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="Restants">
+		     <tileContent>
+			    <TileContent unit="Lignes">
+				    <content>
+					   <NumericContent value="{params>/nbTodo}" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="En erreur">
+		     <tileContent>
+			    <TileContent unit="Lignes">
+				    <content>
+					   <NumericContent value="{params>/nbKO}" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
+            <Button
+                text="Import dans la table SUIVI"
+                press="onImportSuivi"
+                app:url="{params>/_url_suivi}"
+                ariaLabelledBy="editButtonLabel"/>
+            <Button
+                text="Import dans la table USERS"
+                press="onImportSuivi"
+                app:url="{params>/_url_users}"
+                ariaLabelledBy="editButtonLabel"/>
+            <Button
+                text="Import dans la table EMAIL"
+                press="onImportSuivi"
+                app:url="{params>/_url_email}"
+                ariaLabelledBy="editButtonLabel"/>
+            <TextArea
+                id="importArea"
+                value=" "
+                rows="20"
+                growingMaxLines="20"
+                valueStateText="JSON invalide"
+                growing="false"
+                width="100%"/>
+
+        </content>
+    </Panel>
+
+    </Page>
+</mvc:View>

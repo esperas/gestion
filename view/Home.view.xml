@@ -1,0 +1,56 @@
+<mvc:View
+          controllerName="ecole.gestion.controller.Home"
+          xmlns="sap.m"
+          xmlns:t="sap.ui.table"
+          xmlns:l="sap.ui.layout"
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page title="{i18n>homePageTitle}">
+<Panel class="sapUiResponsiveMargin"
+           width="auto"
+           headerText="Interface de gestion des paiements">
+        <content>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="SOLDE"
+                app:target="solde"
+                press="press">
+		     <tileContent>
+			    <TileContent>
+				    <content>
+					  <Text text="Gestion des soldes avec envois de mails de relance" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="SUIVI"
+                app:target="suivi"
+                press="press">
+		     <tileContent>
+			    <TileContent>
+				    <content>
+					   <Text text="Gestion des suivis de paiement" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="IMPORT"
+                app:target="import"
+                press="press">
+		     <tileContent>
+			    <TileContent>
+				    <content>
+					   <Text text="Importation des données de Suivi, Users et Mail" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
+
+    </content>
+    </Panel>
+    </Page>
+</mvc:View>

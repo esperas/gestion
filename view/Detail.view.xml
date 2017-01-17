@@ -1,0 +1,86 @@
+<mvc:View
+	controllerName="ecole.gestion.controller.Detail"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+
+    <Page title="Edition d'un paiement"
+          showNavButton="true"
+		  navButtonPress="onNavBack">
+
+    <VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormToolbar"
+			editable="true"
+			layout="ResponsiveGridLayout"
+            singleContainerFullSize="false">
+			<f:content>
+				<Toolbar>
+					<Title text="Paiement ou facture {/mode} {/refid} " level="H5" titleStyle="H5"/>
+					<ToolbarSpacer />
+                    <Button icon="sap-icon://delete"
+                            press="onDelete"
+                            visible="{= ${/mode}  !== 'new'}"/>
+					<Button icon="sap-icon://save" press="onSave"/>
+				</Toolbar>
+				<Label text="Famille" />
+                <ComboBox
+				    showSecondaryValues= "true"
+                    value="{/famille}"
+				    items="{
+					   path: 'users>/users/',
+					   sorter: { path: 'famille' }
+				    }"
+                      >
+				    <core:ListItem text="{users>famille}" additionalText = "{users>nom}"/>
+			     </ComboBox>
+				<Input value="{/famille}">
+
+				</Input>
+				<Label text="Date" />
+                <DatePicker
+					value="{/date}" valueFormat="yyyy-MM-dd" displayFormat="long"
+			         change="handleChange"
+			         class="sapUiSmallMarginBottom"/>
+				<Label text="Facture" />
+				<Input value="{/facture}" />
+				<Label text="Paiement" />
+				<Input value="{/paiement}" />
+				<Label text="Libellé" />
+				<Input value="{/libelle}" />
+				<Label text="Status" />
+				<Input value="{/status}" />
+				<Label text="N° de Pièce" />
+				<Input value="{/piece}" />
+				<Label text="Période de référence" />
+                <DatePicker
+					value="{/periode}" valueFormat="yyyyMM" displayFormat="yyyyMM"
+			         change="handleChange"
+			         class="sapUiSmallMarginBottom"/>
+				<Label text="Type de document" />
+                <ComboBox
+				    showSecondaryValues= "true"
+                    value="{/typedoc}"
+				    items="{
+					   path: '/ListeTypeDoc',
+					   sorter: { path: 'name' }
+				    }">
+				    <core:ListItem key="{name}" text="{name}" additionalText = "{libelle}"/>
+			     </ComboBox>
+				<Input value="{/typedoc}" />
+                <Label text="Facture lié réglé" />
+                <Switch state="{/flpaye}"
+                        customTextOn="Oui"
+                        customTextOff="Non"
+                        visible="{ parts: [{path: '/mode'}, {path: '/refid'}],
+		                                      formatter: '.formatter.isFactureRegle'}">
+  <!--  				<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>-->
+				</Switch>
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+    </Page>
+</mvc:View>

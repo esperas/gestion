@@ -4,12 +4,6 @@
           xmlns:mvc="sap.ui.core.mvc"
           xmlns="sap.m"
           displayBlock="true">
-    <App>
-        <pages>
-            <Page title="{i18n>homePageTitle}">
-                <mvc:XMLView viewName="ecole.gestion.view.Suivi"/>
-            </Page>
-        </pages>
-    </App>
+    <App id="app" />
 
 </mvc:View>

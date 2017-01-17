@@ -10,6 +10,14 @@ sap.ui.define([], function () {
         isNotEmpty: function (sValue) {
             if (sValue) { return true};
             return false;
+        },
+        isPayable: function (sType, sStatus) {
+            if ((sType=="F")&&(sStatus!="X")) { return true};
+            return false;
+        },
+        isFactureRegle: function (sMode, sRefid) {
+            if ((sMode=="new")&&(sRefid)) { return true};
+            return false;
         }
 	};
 });

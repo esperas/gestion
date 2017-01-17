@@ -35,39 +35,40 @@ sap.ui.define([
 
             // Envoi des mails
             var i;
-            var texte;
-            for (i = 0; i < oParents.oData.length; i++) {
-                if (oParents.oData[i].selected) {
-                    console.log(oParents.oData[i].mail);
-                    var solde = parseFloat(oParents.oData[i].solde);
-                    if (solde>=0){
-                        texte = "créditeur de " + solde.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
-                        texte += ", vous n'avez rien à payer cette fois-ci"
-                    } else {
-                        texte = "débiteur de " + solde.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
-                    }
-                    emailjs.send("smtp_server", oParams.oData.mailTemplate , {
-                        "mail":oParents.oData[i].mail,
-                        "famille":oParents.oData[i].famille,
-                        "id":oParents.oData[i].id,
-                        "texte": texte,
-                        "solde":solde.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
-                    })
+            for (i = 0; i < oParents.oData.solde.length; i++) {
+                if (oParents.oData.solde[i].selected) {
+                    console.log(oParents.oData.solde[i].mail);
+                    var solde = parseFloat(oParents.oData.solde[i].solde);
+
+                    emailjs.send("smtp_server", oParams.oData.mailTemplate , {"mail":oParents.oData.solde[i].mail, "famille":oParents.oData.solde[i].famille, "id":oParents.oData.solde[i].code, "solde":solde.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })})
+                    .then(
+                        function(response) {
+                            window.oModels["params"].oData.nbOK += 1;
+                            window.oModels["params"].refresh();
+                            console.log("SUCCESS", response);
+                        },
+                        function(error) {
+                            window.oModels["params"].oData.nbKO += 1;
+                            window.oModels["params"].refresh();
+                            console.log("FAILED", error);
+                        }
+                    );
 
                 }
             }
 
             // Désélection des coches
-            for (i = 0; i < oParents.oData.length; i++) {
-                if (oParents.oData[i].mail) {
-                    if (oParents.oData[i].selected) {
-                        oParents.oData[i].selected = false;
+            for (i = 0; i < oParents.oData.solde.length; i++) {
+                if (oParents.oData.solde[i].mail) {
+                    if (oParents.oData.solde[i].selected) {
+                        oParents.oData.solde[i].selected = false;
                         oParams.oData.nBselected = parseInt(oParams.oData.nBselected) - 1;
                     }
 
                 }
             }
             oParents.refresh();
+            oParams.oData.mailTemplate = "password";
             oParams.refresh();
 
             this._getDialog().close();

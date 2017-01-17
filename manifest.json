@@ -40,20 +40,81 @@
                 }
             },
             "parents": {
-                "type": "sap.ui.model.json.JSONModel",
-                "uri": "json/Global.json"
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "suivi": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "users": {
+                "type": "sap.ui.model.json.JSONModel"
             },
             "params": {
-                "type": "sap.ui.model.json.JSONModel",
-                "uri": "json/param.json"
+                "type": "sap.ui.model.json.JSONModel"
             }
         },
-        "resources": {
-            "css": [
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "ecole.gestion.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "transition": "slide"
+            },
+            "routes": [{
+                "pattern": "",
+                "name": "appHome",
+                "target": "home"
+                },
                 {
-                    "uri": "css/style.css"
+                "pattern": "suivi",
+                "name": "suivi",
+                "target": "suivi"
+                },
+                {
+                "pattern": "import",
+                "name": "import",
+                "target": "import"
+                },
+                {
+                "pattern": "solde",
+                "name": "solde",
+                "target": "solde"
+                },
+                {
+                "pattern": "detail/{id}",
+                "name": "detail",
+                "target": "detail"
+                },
+                {
+                "pattern": "new/:id:",
+                "name": "new",
+                "target": "detail"
                 }
-            ]
-        }
+                      ],
+            "targets": {
+                "home": {
+                    "viewName": "Home",
+                    "viewLevel" : 1
+                },
+                "suivi": {
+                    "viewName": "Suivi",
+                    "viewLevel" : 2
+                },
+                "import": {
+                    "viewName": "Import",
+                    "viewLevel" : 2
+                },
+                "solde": {
+                    "viewName": "Solde",
+                    "viewLevel" : 2
+                },
+                "detail": {
+                    "viewName": "Detail",
+                    "viewLevel" : 3
+                }
+         }
+      }
+
     }
 }

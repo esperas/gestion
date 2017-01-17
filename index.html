@@ -3,10 +3,11 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta charset="utf-8">
+        <meta http-equiv="Cache-Control" content="no-cache" />
         <title>Gestion</title>
         <script
                 id="sap-ui-bootstrap"
-                src="https://openui5.hana.ondemand.com/1.38.8/resources/sap-ui-core.js"
+                src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
                 data-sap-ui-theme="sap_bluecrystal"
                 data-sap-ui-libs="sap.m"
                 data-sap-ui-compatVersion="edge"
@@ -14,6 +15,10 @@
                 data-sap-ui-resourceroots='{ "ecole.gestion": "./"}' >
         </script>
         <script>
+            //window.oModels = { "parents" : "", "suivi" : "", "params" : ""}
+            window.oModels = {}
+            window.cachedScriptPromises = {}
+
             sap.ui.getCore().attachInit(function () {
                 new sap.ui.core.ComponentContainer({
                     name : "ecole.gestion"

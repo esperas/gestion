@@ -1,0 +1,141 @@
+<mvc:View
+          controllerName="ecole.gestion.controller.Solde"
+          xmlns="sap.m"
+          xmlns:l="sap.ui.layout"
+          xmlns:mvc="sap.ui.core.mvc">
+<Page title="{i18n>homePageTitle}"
+      showNavButton="true"
+      navButtonPress="onNavBack">
+
+    <Panel class="sapUiResponsiveMargin"
+           width="auto"
+           headerText="Gestion des soldes : ">
+        <content>
+            <l:VerticalLayout class="sapUiSmallMargin" >
+                <FlexBox
+                               alignItems="Start"
+					           justifyContent="Start">
+				    <items>
+                        <Text text="{i18n>nb} : " />
+                        <ObjectNumber
+				            number="{path:'params>/nBselected',
+                                    type: 'sap.ui.model.type.Integer'}"
+				        />
+                    </items>
+				    <items>
+                        <Text text="Mail envoyé : " />
+                        <ObjectNumber
+				            number="{path:'params>/nbOK',
+                                    type: 'sap.ui.model.type.Integer'}"
+				        />
+                    </items>
+				    <items>
+                        <Text text="Mail erroné : " />
+                        <ObjectNumber
+				            number="{path:'params>/nbKO',
+                                    type: 'sap.ui.model.type.Integer'}"
+				        />
+                    </items>
+                </FlexBox>
+                <FlexBox
+                               alignItems="Start"
+					           justifyContent="Start">
+				    <items>
+                        <Button text="Tout sélectionner" icon="sap-icon://multiselect-all" press="onSelectAll" ariaLabelledBy="editButtonLabel"/>
+                        <Button text="Tout dé-sélectionner" icon="sap-icon://multiselect-none" press="onUnselectAll" ariaLabelledBy="editButtonLabel"/>
+                        <Button text="Solde négatif" icon="sap-icon://money-bills" press="onSelectDeb" ariaLabelledBy="editButtonLabel"/>
+                        <Button enabled="{= ${params>/nBselected}  > 0 ? true : false }"
+                                class="sapUiMediumMarginBegin" text="Envoyer les mails" icon="sap-icon://email"  press="onMail" ariaLabelledBy="editButtonLabel"/>
+                    </items>
+                </FlexBox>
+
+
+            </l:VerticalLayout>
+        </content>
+    </Panel>
+
+    <Panel >
+        <Table id="idProductsTable"
+               inset="false"
+               fixedLayout="false"
+               showSeparators="All"
+               items="{
+                      path: 'parents>/solde/',
+                      sorter: {
+                            path: 'famille',
+				            descending: false
+			                 }
+                      }"
+               >
+            <columns>
+                <Column mergeDuplicates="true"
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
+                    <Text text="{i18n>famille}" />
+                </Column>
+                <Column mergeDuplicates="true"
+                        mergeFunctionName="getNumber#"
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
+                    <Text text="{i18n>solde}" />
+                </Column>
+                <Column
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
+                    <Text text="{i18n>selected}" />
+                </Column>
+                <Column
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
+                    <Text text="{i18n>mail}" />
+                </Column>
+
+                <Column
+                        flexible="true"
+                        resizable="true"
+                        autoResizable="true"
+                        width="auto">
+                    <Text text="{i18n>action}" />
+                </Column>
+
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{parents>famille}" />
+                        <ObjectNumber      number="{
+                                            parts: [{path: 'parents>solde'}, {path: 'parents>currency'}],
+			                                     type: 'sap.ui.model.type.Currency',
+			                                     formatOptions: {
+				                                    showMeasure: false
+			                                     }
+		                                      }"
+		                                  numberUnit="{parents>currency}"
+                                     />
+                        <CheckBox visible="{path: 'parents>mail', formatter: '.formatter.isNotEmpty'}"
+                                  selected="{parents>selected}"
+                                  select="onCheck"/>
+                        <Text text="{parents>mail}" />
+                        <FlexBox
+                               alignItems="Start"
+					           justifyContent="Start">
+					       <items>
+                            <Button icon="sap-icon://search" press="onGoto" ariaLabelledBy="editButtonLabel"/>
+
+                            </items>
+				        </FlexBox>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+    </Page>
+</mvc:View>

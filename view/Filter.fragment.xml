@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleConfirm">
+		<sortItems>
+			<ViewSettingsItem text="Date" key="date" selected="true" />
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem text="Famille" key="famille" />
+		</groupItems>
+		<filterItems>
+			<ViewSettingsCustomItem
+				id="idFamilleFilter"
+				text="Custom Filter"
+				key="myFilter">
+				<customControl>
+					<ComboBox
+				    showSecondaryValues= "true"
+
+				    items="{
+					   path: 'users>/users/',
+					   sorter: { path: 'famille' }
+				    }"
+                      >
+				    <core:ListItem text="{users>famille}" additionalText = "{users>nom}"/>
+			     </ComboBox>
+				</customControl>
+			</ViewSettingsCustomItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

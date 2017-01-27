@@ -6,6 +6,10 @@
           xmlns:mvc="sap.ui.core.mvc"
           xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <Page title="{i18n>homePageTitle}">
+        <headerContent>
+			<Button icon="{= ${params>/_username} ? 'sap-icon://connected' : 'sap-icon://disconnected' }"
+                    tooltip="Share" press="onConnect"/>
+		</headerContent>
 <Panel class="sapUiResponsiveMargin"
            width="auto"
            headerText="Interface de gestion des paiements">

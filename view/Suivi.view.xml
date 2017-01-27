@@ -3,48 +3,100 @@
           xmlns="sap.m"
           xmlns:t="sap.ui.table"
           xmlns:l="sap.ui.layout"
+          	xmlns:core="sap.ui.core"
           xmlns:mvc="sap.ui.core.mvc">
 
     <Page title="{i18n>homePageTitle}"
           showNavButton="true"
 		  navButtonPress="onNavBack">
 
+
+
     <Panel >
 
         <Button icon="sap-icon://document" text="Création d'une entrée" tooltip="Nouvelle entrée"  press="onCreate"/>
         <Button icon="sap-icon://refresh" text="Rafraichir les données" press="onRefresh"/>
         <Button icon="sap-icon://loan" text="Seulement Factures impayées" press="onFilter"/>
-        <t:Table
+        <Label text="Date de dernière MAJ" />
+        <DatePicker
+			value="{params>/dateMAJ}" valueFormat="yyyy-MM-dd" displayFormat="long"
+		    change="changeDateMAJ"
+		    class="sapUiSmallMarginBottom"
+            width="10rem"/>
+        <Table
 				id="tsuivi"
+                inset="false"
 				selectionMode="None"
-				rows="{suivi>/suivi/}"
-				visibleRowCount="15"
-                enableCellFilter = "true"
-
+				items="{suivi>/suivi/}"
 				ariaLabelledBy="title">
-        <t:title>
-			<HBox>
-				<items>
-					<Title text="Suivi des paiements" titleStyle="H3" class="sapUiTinyMarginBeginEnd"/>
-				</items>
-			</HBox>
-		</t:title>
-        <t:noData>
-			<Link
-				class="sapUiMediumMargin"
-				text="No Data found. Press here to reset all filters."
-				press="clearAllFilters"/>
-        </t:noData>
-        <t:columns>
-		  <t:Column width="5rem"
-                    filterProperty="Date"
-                    sorted="true"
-                    sortOrder="Descending"
-                    sortProperty="date"
-                    id="colDate">
-		      <Label text="Date" />
-			     <t:template>
-				    <Text text="{ path: 'suivi>date',
+            <headerToolbar>
+			 <Toolbar>
+				<Title text="Suivi des paiements" level="H3"/>
+                 <ComboBox
+                    selectionChange="FilterFamille"
+                    id="filtreFamille"
+				    showSecondaryValues= "true"
+				    items="{
+					   path: 'users>/users/',
+					   sorter: { path: 'famille' }
+				    }"
+                      >
+                     <core:ListItem text="{users>famille}" key="{users>famille}" additionalText = "{users>nom}"/>
+                 </ComboBox>
+                 <ToolbarSpacer></ToolbarSpacer>
+						<Button tooltip="Tri, filtrer etc..." icon="sap-icon://drop-down-list" press="onFilterOpen" />
+			</Toolbar>
+		  </headerToolbar>
+        				<infoToolbar>
+					<Toolbar
+						id="vsdFilterBar"
+						active="true"
+						visible="false"
+						press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
+						<Label id="vsdFilterLabel" text="?" />
+					</Toolbar>
+				</infoToolbar>
+        <columns>
+			<Column	>
+				<Text text="Date" />
+			</Column>
+			<Column	width="8em"	>
+				<Text text="Famille" />
+			</Column>
+			<Column	>
+				<Text text="Facture" />
+			</Column>
+			<Column	>
+				<Text text="Paiement" />
+			</Column>
+			<Column	width="16em"	>
+				<Text text="Libellé" />
+			</Column>
+			<Column	>
+				<Text text="N° Pièce" />
+			</Column>
+			<Column	>
+				<Text text="Période" />
+			</Column>
+ 			<Column	>
+				<Text text="Type pièce" />
+			</Column>
+			<Column	>
+				<Text text="Status" />
+			</Column>
+			<Column	width="2em">
+				<Text text="Edit" />
+			</Column>
+			<Column	width="2em">
+				<Text text="Payer" />
+			</Column>
+
+        </columns>
+
+        <items>
+            <ColumnListItem>
+		      <cells>
+                  <Text text="{ path: 'suivi>date',
 				                  type: 'sap.ui.model.type.Date',
 				                  formatOptions: {
 					                   style: 'short',
@@ -53,85 +105,34 @@
 					                   }
 				                  }
                                 }"/>
-				    </t:template>
-		  </t:Column>
-        <t:Column width="11rem"
-                  defaultFilterOperator="StartsWith"
-                  filterProperty="famille">
-		  <Label text="Famille" />
-		    <t:template>
-                <Text text="{suivi>famille}"/>
-            </t:template>
-		</t:Column>
+                     <Text text="{suivi>famille}"/>
 
-        <t:Column width="11rem">
-		  <Label text="Facture émise" />
-		    <t:template>
-                <Text text="{suivi>facture}"/>
-            </t:template>
-		</t:Column>
+                     <Text text="{suivi>facture}"/>
 
-        <t:Column width="11rem">
-		  <Label text="Paiement effectué" />
-		    <t:template>
-                <Text text="{suivi>paiement}"/>
-            </t:template>
-		</t:Column>
+                     <Text text="{suivi>paiement}"/>
 
-        <t:Column width="11rem">
-		  <Label text="Libellé" />
-		    <t:template>
-                <Text text="{suivi>libelle}"/>
-            </t:template>
-		</t:Column>
+                     <Text text="{suivi>libelle}"/>
 
-        <t:Column width="3rem">
-		  <Label text="N°Piece" />
-		    <t:template>
-                <Text text="{suivi>piece}"/>
-            </t:template>
-		</t:Column>
+                     <Text text="{suivi>piece}"/>
 
-        <t:Column width="3rem">
-		  <Label text="Période" />
-		    <t:template>
-                <Text text="{suivi>periode}"/>
-            </t:template>
-		</t:Column>
+                     <Text text="{suivi>periode}"/>
 
-        <t:Column width="3rem">
-		  <Label text="Document" />
-		    <t:template>
-                <Text text="{suivi>typedoc}"/>
-            </t:template>
-		</t:Column>
+                     <Text text="{suivi>typedoc}"/>
 
-        <t:Column width="3rem">
-		  <Label text="Status" />
-		    <t:template>
-                <Text text="{suivi>status}"/>
-            </t:template>
-		</t:Column>
+                     <Text text="{suivi>status}"/>
 
-        <t:Column width="2rem">
-            <t:template>
-                <Button icon="sap-icon://edit" press="onDetail"/>
-            </t:template>
-		</t:Column>
-        <t:Column width="2rem">
-            <t:template>
-                <Button icon="sap-icon://loan"
+                     <Button icon="sap-icon://edit" press="onDetail"/>
+
+                     <Button icon="sap-icon://loan"
                         press="onPaiement"
                         visible="{ parts: [{path: 'suivi>typedoc'}, {path: 'suivi>status'}],
 		                                      formatter: '.formatter.isPayable'}"
                         />
-            </t:template>
-		</t:Column>
 
-        </t:columns>
-
-
-        </t:Table>
+				</cells>
+			</ColumnListItem>
+		</items>
+        </Table>
     </Panel>
     </Page>
 </mvc:View>

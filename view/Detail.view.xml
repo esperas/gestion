@@ -82,5 +82,8 @@
 			</f:content>
 		</f:SimpleForm>
 	</VBox>
+        <VBox class="sapUiSmallMargin">
+            <Text text="2eme panneau" value="TEST" />
+        </VBox>
     </Page>
 </mvc:View>

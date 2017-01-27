@@ -4,32 +4,58 @@ sap.ui.define([
     "../model/formatter",
     "sap/ui/table/library",
     "sap/ui/model/Filter",
+		'sap/ui/model/Sorter',
     "sap/ui/model/json/JSONModel"
-], function (Controller, MessageToast, formatter, uiTable, Filter, JSONModel) {
+], function (Controller, MessageToast, formatter, uiTable, Filter, Sorter, JSONModel) {
     "use strict";
     return Controller.extend("ecole.gestion.controller.Suivi", {
+
+        _oDialog: null,
+
+       FilterFamille : function (oEvent) {
+            var oTable = this.getView().byId("tsuivi");
+            var oCombo = this.getView().byId("filtreFamille");
+            var key = oCombo.getProperty("selectedKey");
+            var oBinding = this.getView().byId("tsuivi").getBinding("items"),
+			sKey = oEvent.getParameter("key"),
+			         oFilter, oFilter2;
+            oFilter = new Filter("famille", "EQ", key);
+            oBinding.filter(oFilter);
+       },
 
        done : function() {
             console.log("Demande CachedModel terminé")
         },
         callok : function () {
-            console.log("call from cached ok");
-            var oDateColumn = window.view.byId("colDate");
-            var oTable = window.view.byId("tsuivi");
-			if ((oDateColumn)&&(oTable)) {oTable.sort(oDateColumn, "Descending");}
-          sap.ui.core.BusyIndicator.hide();
+            var jqxhr = $.ajax({
+                    url: window.oModels["params"].oData._url_maj,
+                    type: "GET",
+                    headers: { 'Accept': 'application/json' },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(window.oModels["params"].oData._username + ":" + window.oModels["params"].oData._password));
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                        },
+                    success: function (data, status, jqXHR) {
+                       window.oModels["params"].oData.dateMAJ = data.maj;
+                       window.oModels["params"].refresh();
+
+                        }
+                    });
+
         },
         ok : function () {
             //var oComp = this.getOwnerComponent();
             window.oComp.file.cachedModel( "suivi", window.oModels["params"].oData._url_suivi, this.callok);
-
+ window.oComp.file.cachedModel( "users", window.oModels["params"].oData._url_users, this.callok);
             console.log("init de Suivi OK");
         },
 
         onFilter : function (oEvent) {
             console.log(oEvent)
             var oTable = this.getView().byId("tsuivi");
-            var oBinding = this.getView().byId("tsuivi").getBinding("rows"),
+            var oBinding = this.getView().byId("tsuivi").getBinding("items"),
 			sKey = oEvent.getParameter("key"),
 			         oFilter, oFilter2;
             oFilter = new Filter("typedoc", "EQ", "F");
@@ -48,7 +74,63 @@ sap.ui.define([
                 .done(this.ok);
 
 
+
+
 		},
+
+        onAfterRendering : function () {
+
+                                    var oView = this.getView();
+            var oTable = oView.byId("tsuivi");
+
+			var oBinding = oTable.getBinding("items");
+
+			// apply sorter to binding
+			// (grouping comes before sorting)
+			var aSorters = [];
+            aSorters.push(new Sorter("date", "Descending"));
+
+			oBinding.sort(aSorters);
+        },
+
+        onFilterOpen : function(){
+             if (!this._oDialog) {
+				this._oDialog = sap.ui.xmlfragment("ecole.gestion.view.Filter", this);
+			}
+			// toggle compact style
+			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+			this._oDialog.open();
+
+
+		},
+
+
+        changeDateMAJ : function (oEvent) {
+            var maj = { "maj" : window.oModels["params"].oData.dateMAJ };
+            $.ajax({
+                    url: window.oModels["params"].oData._url_maj,
+                    type: "PATCH",
+                    data: JSON.stringify(maj),
+                    //crossDomain: true,
+                    headers:  { 'Accept' : 'application/json' ,
+                               'Content-Type': 'application/json' }
+                              ,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(window.oModels["params"].oData._username + ":" + window.oModels["params"].oData._password));
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                        },
+                    success: function (data, status, jqXHR) {
+                        console.log("Date de MAJ OK");
+                    },
+                    error: function (jqXHR, status, err) {
+                        },
+                    complete: function (jqXHR, status) {
+                        //console.log(window.failed);
+                        }
+                    });
+        },
 
         onDetail : function(oEvent) {
             var oItem = oEvent.getSource();
@@ -75,11 +157,13 @@ sap.ui.define([
         },
 
         onRefresh : function(oEvent) {
-            sap.ui.core.BusyIndicator.show();
+
             var oTable = this.getView().byId("tsuivi");
-            var oBinding = this.getView().byId("tsuivi").getBinding("rows");
+            var oBinding = this.getView().byId("tsuivi").getBinding("items");
             oBinding.filter(null);
 
+            var oCombo = this.getView().byId("filtreFamille");
+            var key = oCombo.setSelectedKey(null);
 
             delete window.cachedScriptPromises.suivi;
             window.oComp.file.cachedModel( "suivi", window.oModels["params"].oData._url_suivi, this.callok);

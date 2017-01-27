@@ -7,7 +7,21 @@ sap.ui.define([
     "use strict";
     return Controller.extend("ecole.gestion.controller.Home", {
 
+        onConnect : function (oEvent) {
+            var oView = this.getView();
+            var oDialog = oView.byId("Login");
+            // create dialog lazily
+            if (!oDialog) {
+                // create dialog via fragment factory
+                oDialog = sap.ui.xmlfragment(oView.getId(), "ecole.gestion.view.Login", this);
+                oView.addDependent(oDialog);
+            }
+            oDialog.open();
+        },
 
+        onLogin : function (oEvent) {
+            this.getView().byId("Login").close();
+        },
 
         press : function (evt) {
 

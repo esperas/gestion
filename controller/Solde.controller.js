@@ -89,7 +89,7 @@ sap.ui.define([
             var oParents = this.getView().getModel("parents");
             var i;
             for (i = 0; i < oParents.oData.solde.length; i++) {
-                if (oParents.oData.solde[i].solde<0) {
+                if (oParents.oData.solde[i].solde<-0.0001) {
                     if ((!oParents.oData.solde[i].selected)&&(oParents.oData.solde[i].mail)) {
                         oParents.oData.solde[i].selected = true;
                         oModel.oData.nBselected = parseInt(oModel.oData.nBselected) + 1;

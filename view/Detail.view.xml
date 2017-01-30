@@ -10,7 +10,13 @@
           showNavButton="true"
 		  navButtonPress="onNavBack">
 
-    <VBox class="sapUiSmallMargin">
+
+
+        <FlexBox
+					alignItems="Start">
+					<items>
+                              <VBox class="sapUiSmallMargin">
+
 		<f:SimpleForm id="SimpleFormToolbar"
 			editable="true"
 			layout="ResponsiveGridLayout"
@@ -81,9 +87,14 @@
 				</Switch>
 			</f:content>
 		</f:SimpleForm>
-	</VBox>
+                                </VBox>
         <VBox class="sapUiSmallMargin">
-            <Text text="2eme panneau" value="TEST" />
+
         </VBox>
+		</items>
+		</FlexBox>
+
+
+
     </Page>
 </mvc:View>

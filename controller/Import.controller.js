@@ -9,6 +9,34 @@ sap.ui.define([
 
         _updateRunning : false,
 
+
+
+        handleFiles: function(oEvent)
+        {
+            var oFileToRead = oEvent.getParameters().files["0"];
+            var reader = new FileReader();
+            // Read file into memory as UTF-8
+            reader.readAsText(oFileToRead);
+            // Handle errors load
+            reader.onload = loadHandler;
+            reader.onerror = errorHandler;
+
+            function loadHandler(event) {
+                var csv = event.target.result;
+                 window.oModels["params"].oData.ui_importArea = csv;
+                 window.oModels["params"].refresh();
+
+            }
+
+            function errorHandler(evt) {
+                if(evt.target.error.name == "NotReadableError") {
+                    alert("Cannot read file !");
+                }
+            }
+        },
+
+
+
         isValidJson : function (json) {
             try {
                 JSON.parse(json);

@@ -3,6 +3,7 @@
           xmlns="sap.m"
           xmlns:l="sap.ui.layout"
           xmlns:mvc="sap.ui.core.mvc"
+          xmlns:u="sap.ui.unified"
           xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 
     <Page title="{i18n>homePageTitle}"
@@ -12,6 +13,10 @@
            width="auto"
            headerText="Importation des données : ">
         <content>
+            <l:VerticalLayout
+                width="100%"
+                class="sapUiSmallMargin" >
+            <l:HorizontalLayout class="sapUiSmallMargin" >
             <GenericTile
                 class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
                 header="Sélection">
@@ -56,6 +61,8 @@
 			     </TileContent>
 		      </tileContent>
 	       </GenericTile>
+            </l:HorizontalLayout>
+            <l:HorizontalLayout class="sapUiSmallMargin" >
             <Button
                 text="Import dans la table SUIVI"
                 press="onImportSuivi"
@@ -71,15 +78,20 @@
                 press="onImportSuivi"
                 app:url="{params>/_url_email}"
                 ariaLabelledBy="editButtonLabel"/>
+            </l:HorizontalLayout>
+
+            <u:FileUploader change="handleFiles" ></u:FileUploader>
+
             <TextArea
                 id="importArea"
-                value=" "
+                value="{params>/ui_importArea}"
                 rows="20"
                 growingMaxLines="20"
                 valueStateText="JSON invalide"
                 growing="false"
+                placeholder="Saisir un JSON valide"
                 width="100%"/>
-
+            </l:VerticalLayout>
         </content>
     </Panel>
 

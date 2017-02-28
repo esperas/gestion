@@ -53,9 +53,12 @@ sap.ui.define([
                     toto.upload();
                 }
             }
-
-
 		},
+
+        onUploadComplete : function(oEvent) {
+            delete window.cachedScriptPromises.files;
+            this.getOwnerComponent().file.cachedModel( "files", "http://api:8080/fichiers", this.callok);
+        },
 
         done : function() {
             console.log("Demande CachedModel terminé")
@@ -89,13 +92,17 @@ sap.ui.define([
             window.controller = this
 			console.log("route matched", this.periode)
             this.oArgs = oEvent.getParameter("arguments");
-            var oComp = this.getOwnerComponent()
+            var oComp = this.getOwnerComponent();
+            var aFilter = [];
+			var sQuery = this.getView().byId("tri").getValue();
+			if (sQuery) {
+				aFilter.push(new sap.ui.model.Filter("periode", sap.ui.model.FilterOperator.Contains, sQuery));
+			}
 
-/*            var parent = window.oModels["ui"].getProperty("parent");
-            //var parent = jQuery.sap.getUriParameters().get("parent");
-            $.when(oComp.file.cachedModel( "famille", "http://api:8080/famille/"+parent, this.callok),
-                  oComp.file.cachedModel( "files", "http://api:8080/fichiers", this.callok ))
-                .done(this.ok)*/
+			// filter binding
+			var oList = this.getView().byId("files");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
 
 		},
 		_onBindingChange : function (oEvent) {

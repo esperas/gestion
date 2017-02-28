@@ -16,7 +16,7 @@
         <DatePicker
             id="tri"
 			width="8em"
-            value="{/periode}" valueFormat="yyyyMM" displayFormat="yyyyMM"
+            value="{params>/ui_importFileTri}" valueFormat="yyyyMM" displayFormat="yyyyMM"
 		    change="onChangePeriode"
 		    class="sapUiSmallMarginBottom"/>
 

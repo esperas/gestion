@@ -10,8 +10,6 @@
           showNavButton="true"
 		  navButtonPress="onNavBack">
 
-
-
         <FlexBox
 					alignItems="Start">
 					<items>
@@ -32,7 +30,9 @@
 				</Toolbar>
 				<Label text="Famille" />
                 <ComboBox
+                    id="filtreFamille"
 				    showSecondaryValues= "true"
+                    selectionChange="onChangeFamille"
                     value="{/famille}"
 				    items="{
 					   path: 'users>/users/',
@@ -41,9 +41,7 @@
                       >
 				    <core:ListItem text="{users>famille}" additionalText = "{users>nom}"/>
 			     </ComboBox>
-				<Input value="{/famille}">
-
-				</Input>
+				<Text id="nomFamille" text="{/famille}"/>
 				<Label text="Date" />
                 <DatePicker
 					value="{/date}" valueFormat="yyyy-MM-dd" displayFormat="long"

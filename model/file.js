@@ -12,6 +12,7 @@ sap.ui.define([], function () {
             if ( !window.cachedScriptPromises[ key ] ) {
                 window.cachedScriptPromises[ key ] = $.Deferred(function( defer ) {
                     console.log("Executer script : ", key, "url:", url)
+                    url += "?=unique" + new Date().getTime();
                 var jqxhr = $.ajax({
                     url: url,
                     type: "GET",

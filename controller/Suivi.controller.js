@@ -10,6 +10,31 @@ sap.ui.define([
     "use strict";
     return Controller.extend("ecole.gestion.controller.Suivi", {
 
+        onCompta : function() {
+            var oPiece = { "date" : "2017-01-01", "asso" :"dauna", "annee" : "2016", "libelle" : "Test de Création Pièce comptable",
+                           "ligne" : [ { "idLigne" : "1", "DC" : "D", "compte" : "512000", "montant" : "100.02" },
+                                       { "idLigne" : "2", "DC" : "C", "compte" : "625000", "montant" : "100.02" } ]};
+
+            var jqxhr = $.ajax({
+                    url: window.oModels["params"].oData._url_compta,
+                    type: "POST",
+                    headers: { 'Accept': 'application/json', 'Content-Type' : 'application/json' },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(window.oModels["params"].oData._username + ":" + window.oModels["params"].oData._password));
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                        },
+                    data : JSON.stringify(oPiece),
+                    success: function (data, status, jqXHR) {
+                        console.log("POST Compta OK ", data);
+                    },
+                    error: function (jqXHR, status, err) {
+                        console.log("Erreur pendant le POST COmpta", err);
+                        }
+                    });
+        },
+
         _oDialog: null,
 
        FilterFamille : function (oEvent) {

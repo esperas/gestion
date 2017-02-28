@@ -14,6 +14,7 @@
 
     <Panel >
 
+        <Button icon="sap-icon://letter" text="test Compta" press="onCompta"/>
         <Button icon="sap-icon://document" text="Création d'une entrée" tooltip="Nouvelle entrée"  press="onCreate"/>
         <Button icon="sap-icon://refresh" text="Rafraichir les données" press="onRefresh"/>
         <Button icon="sap-icon://loan" text="Seulement Factures impayées" press="onFilter"/>
@@ -39,6 +40,9 @@
         <Table
 				id="tsuivi"
                 inset="false"
+                growing="true"
+		        growingThreshold="100"
+		        growingScrollToLoad="false"
 				selectionMode="None"
 				items="{suivi>/suivi/}"
 				ariaLabelledBy="title">

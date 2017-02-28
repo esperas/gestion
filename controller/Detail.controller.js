@@ -9,6 +9,15 @@ sap.ui.define([
 
         formatter : formatter,
 
+        onChangeFamille : function(oEvent) {
+            var oBinding = oEvent.getParameter("selectedItem").getBindingContext("users").getPath();
+            var oNom1 = this.getView().byId("nomFamille");
+            oNom1.bindProperty("text","users>"+oBinding+"/nom");
+ /*           var oNom = this.getView().byId("nomFamille").bindElement({
+				path: "/users/0/nom" });*/
+
+        },
+
         ok : function () {
             console.log("init de users OK");
         },
@@ -247,6 +256,12 @@ sap.ui.define([
                                   { "name" : "A", "libelle" : "Avoir"}];
             oModel.setData(toto);
             this.getView().setModel(oModel) ;
+
+            var idUser = window.oModels["users"].oData.users.findIndex((e1)=>(e1.famille==toto.famille));
+            var oNom1 = this.getView().byId("nomFamille");
+            oNom1.bindProperty("text","users>/users/"+idUser+"/nom");
+
+
         },
         onNavBack : function (oEvent) {
             window.Router.navTo("suivi");

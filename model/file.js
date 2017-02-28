@@ -25,10 +25,8 @@ sap.ui.define([], function () {
                         },
                     success: function (data, status, jqXHR) {
                         console.log("Cached Model ", key, " Read success.");
-                        if (key=="parents"){
-                            window.oModels[key].setData(data._embedded);
-                        } else if ((key=="suivi")||(key=="users")){
-                            window.oModels[key].setData(data._embedded);
+                        if (data._embedded) {
+                           window.oModels[key].setData(data._embedded);
                         } else {
                             window.oModels[key].setData(data);
                         }

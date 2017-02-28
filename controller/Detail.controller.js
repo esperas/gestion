@@ -140,7 +140,7 @@ sap.ui.define([
                         },
                     data : JSON.stringify(oSuivi),
                     success: function (data, status, jqXHR) {
-                        console.log("POST success.");
+                        console.log("POST success.", data);
                         delete window.cachedScriptPromises.suivi;
                         window.oComp.file.cachedModel( "suivi", window.oModels["params"].oData._url_suivi, this.ok);
                     },
@@ -257,9 +257,12 @@ sap.ui.define([
             oModel.setData(toto);
             this.getView().setModel(oModel) ;
 
-            var idUser = window.oModels["users"].oData.users.findIndex((e1)=>(e1.famille==toto.famille));
-            var oNom1 = this.getView().byId("nomFamille");
-            oNom1.bindProperty("text","users>/users/"+idUser+"/nom");
+            var idUser;
+            if (toto.famille) {
+                idUser = window.oModels["users"].oData.users.findIndex((e1)=>(e1.famille==toto.famille));
+                var oNom1 = this.getView().byId("nomFamille");
+                oNom1.bindProperty("text","users>/users/"+idUser+"/nom");
+            }
 
 
         },

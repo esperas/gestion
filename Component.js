@@ -39,10 +39,12 @@ sap.ui.define([
             window.oModels["suivi"] = this.getModel("suivi");
             window.oModels["params"] = this.getModel("params");
             window.oModels["users"] = this.getModel("users");
+            window.oModels["files"] = this.getModel("files");
             //this.file.cachedModel( "parents", "http://api:8080/solde", this.successCallback);
             //this.file.cachedModel( "suivi", "http://api:8080/suivi", this.successCallback);
             console.log("Demande de chargement du model PARAMS depuis componet.js")
             this.file.cachedModel( "params", "json/param.json", this.successCallback);
+            this.file.cachedModel( "files", "http://api:8080/fichiers", this.successCallback);
 
             // create the views based on the url/hash
             this.getRouter().initialize();

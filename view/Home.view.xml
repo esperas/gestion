@@ -53,6 +53,19 @@
 			     </TileContent>
 		      </tileContent>
 	       </GenericTile>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="FICHIERS"
+                app:target="files"
+                press="press">
+		     <tileContent>
+			    <TileContent>
+				    <content>
+					  <Text text="Gestion des PJs (scan garderie, etc...)" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
 
     </content>
     </Panel>

@@ -1,0 +1,59 @@
+<mvc:View
+          controllerName="ecole.gestion.controller.ImportFile"
+          xmlns="sap.m"
+          xmlns:l="sap.ui.layout"
+          xmlns:mvc="sap.ui.core.mvc">
+    <Page
+        class="sapUiStdPage"
+        id="fichiers"
+        title="Import de fichiers "
+        showNavButton="true"
+		navButtonPress="navBack">
+        <headerContent>
+			<Button icon="sap-icon://upload" press="onStartUpload" />
+		</headerContent>
+
+        <DatePicker
+            id="tri"
+			width="8em"
+            value="{/periode}" valueFormat="yyyyMM" displayFormat="yyyyMM"
+		    change="onChangePeriode"
+		    class="sapUiSmallMarginBottom"/>
+
+    <UploadCollection
+            id="files"
+			instantUpload="false"
+			showSeparators="All"
+            multiple="true"
+            sameFilenameAllowed="false"
+			change="onChange"
+			fileDeleted="onFileDeleted"
+			filenameLengthExceed="onFilenameLengthExceed"
+			fileSizeExceed="onFileSizeExceed"
+			typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete"
+			beforeUploadStarts="onBeforeUploadStarts"
+            uploadUrl="http://api:8080/fichiers?XDEBUG_SESSION_START=xdebug"
+            items="{path : 'files>/fichiers', templateShareable : 'true'}">
+
+    <items>
+		<UploadCollectionItem
+			fileName="{files>filename}"
+			url="{files>url}"
+            mimeType="{files>mimeType}"
+            attributes="{path : 'files>attributes', templateShareable : 'true'}"
+            visibleEdit="false"
+            visibleDelete="false">
+            <attributes>
+							<ObjectAttribute
+								title="{files>title}"
+								text="{files>text}"
+								/>
+						</attributes>
+        </UploadCollectionItem>
+    </items>
+
+
+    </UploadCollection>
+    </Page>
+</mvc:View>

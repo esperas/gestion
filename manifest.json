@@ -50,6 +50,9 @@
             },
             "params": {
                 "type": "sap.ui.model.json.JSONModel"
+            },
+            "files": {
+                "type": "sap.ui.model.json.JSONModel"
             }
         },
         "routing": {
@@ -82,6 +85,11 @@
                 "target": "solde"
                 },
                 {
+                "pattern": "files",
+                "name": "files",
+                "target": "files"
+                },
+                {
                 "pattern": "detail/{id}",
                 "name": "detail",
                 "target": "detail"
@@ -96,6 +104,10 @@
                 "home": {
                     "viewName": "Home",
                     "viewLevel" : 1
+                },
+                "files": {
+                    "viewName": "ImportFile",
+                    "viewLevel" : 2
                 },
                 "suivi": {
                     "viewName": "Suivi",

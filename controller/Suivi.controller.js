@@ -4,14 +4,16 @@ sap.ui.define([
     "../model/formatter",
     "sap/ui/table/library",
     "sap/ui/model/Filter",
-		'sap/ui/model/Sorter',
+	"sap/ui/model/Sorter",
     "sap/ui/model/json/JSONModel"
 ], function (Controller, MessageToast, formatter, uiTable, Filter, Sorter, JSONModel) {
     "use strict";
     return Controller.extend("ecole.gestion.controller.Suivi", {
 
+// Fonction de mise à jour des données comptable, à insérer après la création d'une nouvelle entrée
         onCompta : function() {
             var oPiece = { "date" : "2017-01-01", "asso" :"dauna", "annee" : "2016", "libelle" : "Test de Création Pièce comptable",
+                           "idSuivi" : "3",
                            "ligne" : [ { "idLigne" : "1", "DC" : "D", "compte" : "512000", "montant" : "100.02" },
                                        { "idLigne" : "2", "DC" : "C", "compte" : "625000", "montant" : "100.02" } ]};
 

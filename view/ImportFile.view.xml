@@ -2,6 +2,7 @@
           controllerName="ecole.gestion.controller.ImportFile"
           xmlns="sap.m"
           xmlns:l="sap.ui.layout"
+          xmlns:core="sap.ui.core"
           xmlns:mvc="sap.ui.core.mvc">
     <Page
         class="sapUiStdPage"
@@ -12,7 +13,16 @@
         <headerContent>
 			<Button icon="sap-icon://upload" press="onStartUpload" />
 		</headerContent>
-
+        <ComboBox
+		    showSecondaryValues= "true"
+            id="typedoc"
+            value="{/typedoc}"
+		    items="{
+			   path: '/ListeTypeDoc',
+			   sorter: { path: 'name' }
+		    }">
+		    <core:ListItem key="{name}" text="{name}" additionalText = "{libelle}"/>
+		</ComboBox>
         <DatePicker
             id="tri"
 			width="8em"
@@ -33,7 +43,7 @@
 			typeMissmatch="onTypeMissmatch"
 			uploadComplete="onUploadComplete"
 			beforeUploadStarts="onBeforeUploadStarts"
-            uploadUrl="http://api:8080/fichiers?XDEBUG_SESSION_START=xdebug"
+            mimeType="application/pdf"
             items="{path : 'files>/fichiers', templateShareable : 'true'}">
 
     <items>

@@ -7,6 +7,23 @@ sap.ui.define([], function () {
             return false;
 
         },
+
+        formatFile : function(sType, sValue) {
+
+        jQuery.sap.require("sap.ui.core.format.FileSizeFormat");
+            if (sType=='size'){
+
+				return sap.ui.core.format.FileSizeFormat.getInstance({
+					binaryFilesize : false,
+					maxFractionDigits : 1,
+					maxIntegerDigits : 3
+				}).format(sValue);
+
+			} else {
+				return sValue;
+			}
+        },
+
         isNotEmpty: function (sValue) {
             if (sValue) { return true};
             return false;

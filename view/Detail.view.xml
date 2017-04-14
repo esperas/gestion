@@ -4,33 +4,52 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
 	xmlns="sap.m">
 
     <Page title="Edition d'un paiement"
           showNavButton="true"
 		  navButtonPress="onNavBack">
 
-        <FlexBox
-					alignItems="Start">
-					<items>
-                              <VBox class="sapUiSmallMargin">
-
 		<f:SimpleForm id="SimpleFormToolbar"
 			editable="true"
 			layout="ResponsiveGridLayout"
-            singleContainerFullSize="false">
+            singleContainerFullSize="true"
+            labelSpanL="2"
+            labelSpanM="2"
+            emptySpanL="5"
+            emptySpanM="4"
+            columnsL="2"
+            columnsM="2">
 			<f:content>
 				<Toolbar>
-					<Title text="Paiement ou facture {/mode} {/refid} " level="H5" titleStyle="H5"/>
+					<Title text="{/mode} {/refid} " level="H5" titleStyle="H5"/>
+                    <SegmentedButton enabled="{= ${/refid} === null }" id="type" selectedKey="paiement" select="onChangeType">
+					   <items>
+						  <SegmentedButtonItem text="Facture" key="facture" />
+						  <SegmentedButtonItem text="Paiement" key="paiement" />
+					   </items>
+				    </SegmentedButton>
+
 					<ToolbarSpacer />
                     <Button icon="sap-icon://delete"
                             press="onDelete"
                             visible="{= ${/mode}  !== 'new'}"/>
 					<Button icon="sap-icon://save" press="onSave"/>
 				</Toolbar>
+                <SegmentedButton
+                    id="moyenPaiement"
+                    selectedKey="{/typedoc}"
+                    select="onChangePaiement"
+                    items="{params>/typeDoc/paiement/}">
+					   <items>
+						  <SegmentedButtonItem text="{params>libelle}" key="{params>key}" />
+					   </items>
+				    </SegmentedButton>
 				<Label text="Famille" />
                 <ComboBox
                     id="filtreFamille"
+                    size="10rem"
 				    showSecondaryValues= "true"
                     selectionChange="onChangeFamille"
                     value="{/famille}"
@@ -41,20 +60,30 @@
                       >
 				    <core:ListItem text="{users>famille}" additionalText = "{users>nom}"/>
 			     </ComboBox>
-				<Text id="nomFamille" text="{/famille}"/>
+
+                <Text id="nomFamille" text="{/famille}"/>
+
 				<Label text="Date" />
                 <DatePicker
 					value="{/date}" valueFormat="yyyy-MM-dd" displayFormat="long"
 			         change="handleChange"
-			         class="sapUiSmallMarginBottom"/>
+			         class="sapUiSmallMarginBottom"
+                    required="true"        />
 				<Label text="Facture" />
-				<Input value="{/facture}" />
+				<Input id="inputFacture" value="{/facture}" />
 				<Label text="Paiement" />
-				<Input value="{/paiement}" />
+				<Input id="inputPaiement" value="{/paiement}" />
 				<Label text="Libellé" />
 				<Input value="{/libelle}" />
 				<Label text="Status" />
-				<Input value="{/status}" />
+                <ComboBox
+                    id="statusChoice"
+                    selectedKey="{/status}"
+				    items="{ path: 'params>/status/',
+                             templateShareable : 'true'
+                           }">
+				    <core:ListItem key="{params>value}" text="{params>libelle}"/>
+			    </ComboBox>
 				<Label text="N° de Pièce" />
 				<Input value="{/piece}" />
 				<Label text="Période de référence" />
@@ -62,37 +91,31 @@
 					value="{/periode}" valueFormat="yyyyMM" displayFormat="yyyyMM"
 			         change="handleChange"
 			         class="sapUiSmallMarginBottom"/>
-				<Label text="Type de document" />
-                <ComboBox
-				    showSecondaryValues= "true"
-                    value="{/typedoc}"
-				    items="{
-					   path: '/ListeTypeDoc',
-					   sorter: { path: 'name' }
-				    }">
-				    <core:ListItem key="{name}" text="{name}" additionalText = "{libelle}"/>
-			     </ComboBox>
-				<Input value="{/typedoc}" />
                 <Label text="Facture lié réglé" />
                 <Switch state="{/flpaye}"
                         customTextOn="Oui"
                         customTextOff="Non"
                         visible="{ parts: [{path: '/mode'}, {path: '/refid'}],
 		                                      formatter: '.formatter.isFactureRegle'}">
-  <!--  				<layoutData>
-						<FlexItemData growFactor="1" />
-					</layoutData>-->
 				</Switch>
+                <Label text="PJ" />
+                <Button icon="sap-icon://pdf-attachment"
+                        press="onPJ"
+                        visible="{= ${/idFile}!==null}"/>
+                <u:FileUploader id="addFileDetail"
+                                icon="sap-icon://add"
+                                iconOnly="true"
+                                visible="{ parts: [{path: '/idFile'}, {path: '/typedoc'}],
+		                                      formatter: '.file.isUploadVisible'}"></u:FileUploader>
+                <Button icon="sap-icon://delete"
+                        text=" les PJs"
+                        press="onDeletePJ"
+                        visible="{ parts: [{path: '/idFile'}, {path: '/typedoc'}],
+		                                      formatter: '.file.isDeleteButton'}"/>
+
 			</f:content>
 		</f:SimpleForm>
-                                </VBox>
-        <VBox class="sapUiSmallMargin">
-
-        </VBox>
-		</items>
-		</FlexBox>
-
-
 
     </Page>
 </mvc:View>
+

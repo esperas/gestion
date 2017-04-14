@@ -7,6 +7,15 @@
       showNavButton="true"
       navButtonPress="onNavBack">
 
+    <MessageStrip
+                visible="{= ${parents>/invalid} === true}"
+				text="Données obsolètes, rafraichir"
+				type="Error"
+				showIcon="true"
+				showCloseButton="false"
+				class="sapUiMediumMarginBottom">
+    </MessageStrip>
+
     <Panel class="sapUiResponsiveMargin"
            width="auto"
            headerText="Gestion des soldes : ">
@@ -46,6 +55,8 @@
                         <Button text="Solde négatif" icon="sap-icon://money-bills" press="onSelectDeb" ariaLabelledBy="editButtonLabel"/>
                         <Button enabled="{= ${params>/nBselected}  > 0 ? true : false }"
                                 class="sapUiMediumMarginBegin" text="Envoyer les mails" icon="sap-icon://email"  press="onMail" ariaLabelledBy="editButtonLabel"/>
+                        <Button text="Refresh" icon="sap-icon://refresh" press="onRefresh"/>
+
                     </items>
                 </FlexBox>
 

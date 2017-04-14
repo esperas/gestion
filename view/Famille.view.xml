@@ -1,0 +1,30 @@
+<mvc:View
+          controllerName="ecole.gestion.controller.Famille"
+          xmlns="sap.m"
+          xmlns:t="sap.ui.table"
+          xmlns:l="sap.ui.layout"
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page title="{i18n>familleTitle}">
+        <headerContent>
+			<Button icon="{= ${params>/_username} ? 'sap-icon://connected' : 'sap-icon://disconnected' }"
+                    tooltip="Share" press="onConnect"/>
+		</headerContent>
+
+            <TileContainer
+			id="container"
+			tileDelete="handleTileDelete"
+			tiles="{users>/users/}">
+
+			<StandardTile
+				icon="{icon}"
+				type="{type}"
+				number="{number}"
+				numberUnit="{numberUnit}"
+				title="{users>famille}"
+				info="{info}"
+				infoState="{infoState}" />
+
+        </TileContainer>
+    </Page>
+</mvc:View>

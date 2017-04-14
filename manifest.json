@@ -1,5 +1,5 @@
 {
-    "_version": "1.1.0",
+    "_version": "1.1.1",
     "sap.app": {
         "_version": "1.1.0",
         "id": "ecole.gestion",
@@ -8,7 +8,7 @@
         "title": "{{appTitle}}",
         "description": "{{appDescription}}",
         "applicationVersion": {
-            "version": "1.0.0"
+            "version": "1.1.1"
         }
     },
     "sap.ui": {
@@ -40,20 +40,52 @@
                 }
             },
             "parents": {
-                "type": "sap.ui.model.json.JSONModel"
+                "type": "ecole.shared.model.JSONModel",
+                "uri" : "http://api/solde",
+                "settings": {
+                    "aResponseProperty": ["_embedded"]
+                }
+
             },
             "suivi": {
-                "type": "sap.ui.model.json.JSONModel"
+                "type": "ecole.shared.model.JSONModel",
+                "uri": "http://api/suivi",
+                "settings": {
+                    "aResponseProperty": ["_embedded"]
+                }
             },
             "users": {
-                "type": "sap.ui.model.json.JSONModel"
+                "type": "ecole.shared.model.JSONModel",
+                "uri": "http://api/users",
+                "settings": {
+                    "aResponseProperty": ["_embedded"]
+                }
             },
+            "divers": {
+                "type": "ecole.shared.model.JSONModel",
+                "uri": "http://api/maj/1"
+            },
+
             "params": {
-                "type": "sap.ui.model.json.JSONModel"
+                "type": "ecole.shared.model.JSONModel",
+                "uri" : "json/param.json",
+                "settings": {
+                    "sModelPath": "/"
+                }
             },
             "files": {
+                "type": "ecole.shared.model.JSONModel",
+                "uri" : "http://api/fichiers",
+                "settings": {
+                    "aResponseProperty": ["_embedded"],
+                    "isFile" : "true"
+                }
+
+            },
+            "importFactures": {
                 "type": "sap.ui.model.json.JSONModel"
             }
+
         },
         "routing": {
             "config": {
@@ -90,6 +122,11 @@
                 "target": "files"
                 },
                 {
+                "pattern": "importfacture",
+                "name": "importFacture",
+                "target": "importFacture"
+                },
+                {
                 "pattern": "detail/{id}",
                 "name": "detail",
                 "target": "detail"
@@ -98,6 +135,11 @@
                 "pattern": "new/:id:",
                 "name": "new",
                 "target": "detail"
+                },
+                {
+                "pattern": "famille",
+                "name": "famille",
+                "target": "famille"
                 }
                       ],
             "targets": {
@@ -124,9 +166,16 @@
                 "detail": {
                     "viewName": "Detail",
                     "viewLevel" : 3
+                },
+                "importFacture": {
+                    "viewName": "ImportFacture",
+                    "viewLevel" : 3
+                },
+                "famille": {
+                    "viewName": "Famille",
+                    "viewLevel" : 2
                 }
          }
       }
-
     }
 }

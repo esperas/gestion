@@ -14,7 +14,7 @@ sap.ui.define([
           console.log("call from cached ok")
         },
         ok : function () {
-            window.oComp.file.cachedModel( "parents", window.oModels["params"].oData._url_solde, this.callok);
+//            window.oComp.file.cachedModel( "parents", window.oModels["params"].oData._url_solde, this.callok);
 
             console.log("init de Solde OK");
         },
@@ -24,8 +24,8 @@ sap.ui.define([
 
             window.controller = this
             window.oComp = this.getOwnerComponent()
-            $.when(window.oComp.file.cachedModel("params", "json/param.json", this.callok))
-                .done(this.ok);
+  //          $.when(window.oComp.file.cachedModel("params", "json/param.json", this.callok))
+    //            .done(this.ok);
 		},
 
 
@@ -84,6 +84,12 @@ sap.ui.define([
             oModel.refresh();
             oParents.refresh();
         },
+
+
+        onRefresh : function(oEvent){
+            sap.ui.getCore().getModel('parents').loadDataFromPath();
+        },
+
         onSelectDeb : function(evt) {
             var oModel = this.getView().getModel("params");
             var oParents = this.getView().getModel("parents");

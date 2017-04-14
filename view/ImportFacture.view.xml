@@ -1,0 +1,131 @@
+<mvc:View
+		height="100%"
+        controllerName="ecole.gestion.controller.ImportFacture"
+		xmlns:layout="sap.ui.layout"
+		xmlns:form="sap.ui.layout.form"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+		<NavContainer id="wizardNavContainer">
+			<pages>
+				<Page
+				id="wizardContentPage"
+				showHeader="false">
+					<content>
+						<Wizard id="importFacture"
+								complete="wizardCompletedHandler">
+							<WizardStep id="Periode"
+										title="Période"
+										validated="true">
+								<MessageStrip class="sapUiSmallMarginBottom"
+											  text="Sélectionner la période d'importation des factures"/>
+                                <Text class="sapUiSmallMarginBottom"
+									  text="La saisie de la période est obligatoire. Le format est AAAAMM (année sur 4 chiffre et mois sur 2 chiffres). Il est conseiller d'utiliser l'aide à la saisie. Dans ce cas, le choix du jour n'a pas d'importance, seul le mois est utilisé"/>
+								<HBox
+										alignItems="Center"
+										justifyContent="Center"
+										width="100%">
+									<DatePicker
+                                        id="tri"
+			                            width="8em"
+                                        value="{importFactures>/periode}" valueFormat="yyyyMM" displayFormat="yyyyMM"
+		                                change="onChangePeriode"
+		                                class="sapUiSmallMarginBottom"/>
+								</HBox>
+							</WizardStep>
+							<WizardStep id="json"
+                                        title="Données de suivi"
+                                        validated="true"
+										>
+								<MessageStrip class="sapUiSmallMarginBottom"
+											  text="Importer le fichier contenant les données de suivi"
+											  showIcon="true"/>
+								<Text text="Il faut importer le fichier JSON automatiquement générer par le fichier CALC des factures. L'appui sur le bouton 'export PDF' génère automatiquement les PDF des factures et le fichier JSON contenant l'ensemble des données de suivi. C'est ce fichier, portant le même nom que le fichier CALC qu'il faut importer"/>
+                                <u:FileUploader value="{importFactures>/jsonUpload}" change="handleFiles" ></u:FileUploader>
+				            </WizardStep>
+							<WizardStep id="factures"
+										validated="true"
+										activate="optionalStepActivation"
+										title="Factures">
+								<MessageStrip class="sapUiSmallMarginBottom"
+											  text="Importer les factures individuelles au format PDF."
+											  showIcon="true"/>
+								<Text text="Importer les factures au format PDF générés par le fichier CALC. Vous pouvez sélectionner les PDFs en masse ou un par un."/>
+                                <UploadCollection
+                                    id="fileFactures"
+			                        instantUpload="false"
+			                        showSeparators="All"
+                                    multiple="true"
+                                    sameFilenameAllowed="false"
+                                    fileDeleted="onFileDeleted"
+                                    mimeType="application/pdf"
+                                    items="{path : '/pdf', templateShareable : 'true'}">
+
+                                    <items>
+		                              <UploadCollectionItem
+			                             fileName="{files>filename}"
+			                             url="{files>url}"
+                                         mimeType="{files>mimeType}"
+                                         attributes="{path : 'files>attributes', templateShareable : 'true'}"
+                                         visibleEdit="false"
+                                         visibleDelete="false">
+                                        <attributes>
+							                 <ObjectAttribute
+								                title="{files>title}"
+								                text="{files>text}"
+								             />
+						              </attributes>
+                                    </UploadCollectionItem>
+                                    </items>
+                            </UploadCollection>
+
+							</WizardStep>
+							<WizardStep id="Justificatifs"
+										activate="pricingActivate"
+										complete="pricingComplete"
+										validated="true"
+										title="Justificatifs">
+								<MessageStrip class="sapUiSmallMarginBottom"
+											  text="Importer les pièces justificatives de la facturation"/>
+								<Text text="Importer les justificatifs au format PDF.Habituellement, les justificatifs sont le scan au format PDF des feuilles de garderie, l'export au format PDF des feuilles de cantine et le fichier récapitulatif des garderies au format PDF également. Ces documents permettent aux parents de vérifier que les éléments facturés sont corrects."/>
+                                <UploadCollection
+                                    id="fileJustifs"
+			                        instantUpload="false"
+			                        showSeparators="All"
+                                    multiple="true"
+                                    sameFilenameAllowed="false"
+			                        change="onChange"
+                                    fileDeleted="onFileDeleted"
+                                    mimeType="application/pdf"
+                                    items="{path : '/fichiers', templateShareable : 'true'}">
+                                    <items>
+		                              <UploadCollectionItem
+			                             fileName="{files>filename}"
+			                             url="{files>url}"
+                                         mimeType="{files>mimeType}"
+                                         attributes="{path : 'files>attributes', templateShareable : 'true'}"
+                                         visibleEdit="false"
+                                         visibleDelete="false">
+                                        <attributes>
+							                 <ObjectAttribute
+								                title="{files>title}"
+								                text="{files>text}"
+								             />
+						              </attributes>
+                                    </UploadCollectionItem>
+                                    </items>
+                            </UploadCollection>
+							</WizardStep>
+						</Wizard>
+					</content>
+					<footer>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<Button text="Cancel" press="handleWizardCancel"/>
+						</Toolbar>
+					</footer>
+				</Page>
+			</pages>
+		</NavContainer>
+</mvc:View>

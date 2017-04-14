@@ -16,19 +16,6 @@
         <content>
             <GenericTile
                 class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                header="SOLDE"
-                app:target="solde"
-                press="press">
-		     <tileContent>
-			    <TileContent>
-				    <content>
-					  <Text text="Gestion des soldes avec envois de mails de relance" />
-                    </content>
-			     </TileContent>
-		      </tileContent>
-	       </GenericTile>
-            <GenericTile
-                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
                 header="SUIVI"
                 app:target="suivi"
                 press="press">
@@ -36,19 +23,6 @@
 			    <TileContent>
 				    <content>
 					   <Text text="Gestion des suivis de paiement" />
-                    </content>
-			     </TileContent>
-		      </tileContent>
-	       </GenericTile>
-            <GenericTile
-                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                header="IMPORT"
-                app:target="import"
-                press="press">
-		     <tileContent>
-			    <TileContent>
-				    <content>
-					   <Text text="Importation des données de Suivi, Users et Mail" />
                     </content>
 			     </TileContent>
 		      </tileContent>
@@ -66,8 +40,53 @@
 			     </TileContent>
 		      </tileContent>
 	       </GenericTile>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="SOLDE"
+                app:target="solde"
+                press="press">
+		     <tileContent>
+			    <TileContent>
+				    <content>
+					  <Text text="Gestion des soldes avec envois de mails de relance" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
 
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="IMPORT FACTURE"
+                app:target="importFacture"
+                press="press">
+		     <tileContent>
+			    <TileContent>
+				    <content>
+					  <Text text="Importation en masse des factures et PDF associés" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
     </content>
     </Panel>
+        <Panel class="sapUiResponsiveMargin"
+           width="auto"
+           headerText="Outils divers">
+        <content>
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="IMPORT"
+                app:target="import"
+                press="press">
+		     <tileContent>
+			    <TileContent>
+				    <content>
+					  <Text text="Importation des données de Suivi, Users et Mail" />
+                    </content>
+			     </TileContent>
+		      </tileContent>
+	       </GenericTile>
+            </content>
+        </Panel>
     </Page>
 </mvc:View>

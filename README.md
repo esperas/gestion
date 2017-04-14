@@ -1,4 +1,9 @@
-#Version
+# Version
+0.2.0 
+Refonte complète de l'accès aux données.
+Utilisation complète d'une API REST
+Utilisation d'un objet spécifique JSON comme modèle de données pour les lectures
+
 0.1.0
 Application des gestions des données de suivi des factures et des paiements
 

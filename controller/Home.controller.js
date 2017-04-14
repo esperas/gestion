@@ -2,10 +2,13 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
     "../model/formatter",
+        "../model/file",
     "sap/ui/model/json/JSONModel"
-], function (Controller, MessageToast, formatter, JSONModel) {
+], function (Controller, MessageToast, formatter, file, JSONModel) {
     "use strict";
     return Controller.extend("ecole.gestion.controller.Home", {
+
+        file : file,
 
         onConnect : function (oEvent) {
             var oView = this.getView();
@@ -21,6 +24,18 @@ sap.ui.define([
 
         onLogin : function (oEvent) {
             this.getView().byId("Login").close();
+            //Stockage du résultat en local
+            jQuery.sap.require("jquery.sap.storage");
+            var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+            var oParams = sap.ui.getCore().getModel('params');
+            var logon = { 'username' : oParams.getProperty('/_username'), "password" : oParams.getProperty('/_password')};
+            if ((logon.username)&&(logon.password)) {
+                oStorage.put("logon", logon);
+            }
+            this.file.setPassword();
+            this.file.loadData();
+
+
         },
 
         press : function (evt) {

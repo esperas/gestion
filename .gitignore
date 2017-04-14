@@ -7,3 +7,7 @@
 /json/
 .htaccess*
 .htpasswd*
+manifest - Atos.json
+manifest - OVH.json
+manifest - maison.json
+index - Atos.html
